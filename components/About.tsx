@@ -6,16 +6,13 @@ export default function About() {
           {/* Avatar / visual */}
           <div className="md:col-span-2">
             <div className="sticky top-24">
-              <div className="aspect-square max-w-xs mx-auto md:mx-0 bg-gradient-to-br from-surface-light to-surface border border-surface-border flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-light" />
-                <div className="text-center relative z-10">
-                  <svg className="w-20 h-20 text-ink-dim mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                  <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-dim">
-                    Photo
-                  </p>
-                </div>
+              <div className="aspect-square max-w-xs mx-auto md:mx-0 border border-surface-border relative overflow-hidden">
+                <img
+                  src="/assets/photo.jpg"
+                  alt="Musthak M."
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-grid-light opacity-30" />
               </div>
               <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-dim text-center md:text-left mt-3">
                 /assets/photo.jpg
