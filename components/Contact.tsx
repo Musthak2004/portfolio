@@ -8,11 +8,11 @@ export default function Contact() {
           {/* Left */}
           <div>
             <p className="section-label">/contact</p>
-            <h2 className="section-heading mb-4">Let&apos;s work together</h2>
+            <h2 className="section-heading mb-4">Let&apos;s automate your workflow</h2>
             <p className="section-desc mb-8">
-              I&apos;m currently looking for software engineering opportunities
-              and open to collaborating on interesting projects. If you have a
-              role, project, or just want to connect — reach out.
+              Tell me what you&apos;re automating and I&apos;ll tell you exactly how
+              I&apos;d approach it. Available 30+ hrs/week for contract and
+              freelance work.
             </p>
 
             <div className="space-y-5">
@@ -102,12 +102,12 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="block font-mono text-xs tracking-wide text-ink-muted mb-2">
-                  Message
+                  What are you automating?
                 </label>
                 <textarea
                   id="message"
                   rows={5}
-                  placeholder="Tell me about your project or opportunity..."
+                  placeholder="Brief description of what you're automating — I'll tell you exactly how I'd approach it..."
                   className="w-full px-4 py-3 bg-[#07070D] border border-surface-border text-ink placeholder-ink-dim text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors resize-none"
                   required
                 />

@@ -8,54 +8,60 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#07070D]" />
 
-      {/* Subtle top gradient */}
+      {/* Subtle glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-accent-glow rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-5 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-5 text-center">
         <div className="animate-fade-in">
-          {/* Terminal-style badge */}
+          {/* Terminal badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-surface-border bg-surface-light/50 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
             <span className="font-mono text-xs text-ink-muted tracking-wide">
-              <span className="text-accent">$</span> cat /proc/role
+              <span className="text-accent">$</span> echo $ROLE
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.08] tracking-tight text-balance mb-5">
-            R.M.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
-              Musthak
-            </span>
-          </h1>
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-accent border border-accent/20 bg-accent/5 px-3 py-1.5 mb-6">
+            Co-Founder @ MSK AI Solutions
+          </div>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-ink-muted font-light leading-relaxed mb-3 text-balance">
-            Aspiring Software Engineer
-          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.08] tracking-tight text-balance mb-4">
+            I build{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
+              AI-powered automations
+            </span>
+            <br />
+            that save 20–40+ hrs/week
+          </h1>
 
           <div className="flex items-center justify-center gap-2 font-mono text-sm text-ink-dim mb-8">
             <span className="text-accent">$</span>
-            <span>building web apps with </span>
+            <span>stack: </span>
+            <span className="text-accent">n8n</span>
+            <span className="text-ink-muted">·</span>
+            <span className="text-accent">Make</span>
+            <span className="text-ink-muted">·</span>
             <span className="text-accent">Python</span>
-            <span className="text-ink-muted">&</span>
-            <span className="text-accent">Django</span>
+            <span className="text-ink-muted">·</span>
+            <span className="text-accent">Claude AI</span>
             <span className="animate-cursor-blink text-ink-dim">_</span>
           </div>
 
-          <p className="text-ink-muted text-base max-w-xl mx-auto mb-10 leading-relaxed">
-            I build full-stack web applications that solve real problems.
-            Open-source contributor, lifelong learner, and passionate about
-            writing clean, maintainable code.
+          <p className="text-ink-muted text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
+            AI customer support agents, CRM & lead automation, data pipelines,
+            voice agents, and custom workflows — every system ships with
+            monitoring, error handling, and documentation.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="#projects" className="btn-primary w-full sm:w-auto justify-center">
+            <a href="#services" className="btn-primary w-full sm:w-auto justify-center">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
               </svg>
-              View Projects
+              What I Build
             </a>
             <a href="#contact" className="btn-outline w-full sm:w-auto justify-center">
-              Get in Touch
+              Let&rsquo;s Talk
             </a>
           </div>
         </div>

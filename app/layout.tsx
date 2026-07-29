@@ -2,26 +2,27 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "R.M. Musthak | Software Engineer — Python, Django, Full-Stack Web Development",
+  title: "Musthak M. | AI Automation Developer — n8n, Make, Python, AI Agents",
   description:
-    "Aspiring software engineer specializing in Python, Django, and full-stack web development. Building robust, scalable web applications for real-world problems.",
+    "I build AI-powered automations that save businesses 20–40+ hours per week. AI agents, CRM automation, data pipelines, and voice agents with n8n, Make, Python, and Claude AI.",
   keywords: [
-    "software engineer",
-    "python developer",
-    "django developer",
-    "full-stack developer",
+    "AI automation developer",
+    "n8n developer",
+    "make.com expert",
+    "AI agents",
+    "automation",
     "Musthak",
-    "web developer",
-    "python",
-    "django",
+    "MSK AI Solutions",
+    "workflow automation",
+    "CRM automation",
   ],
   openGraph: {
-    title: "R.M. Musthak | Software Engineer",
+    title: "Musthak M. | AI Automation Developer",
     description:
-      "Aspiring software engineer specializing in Python, Django, and full-stack web development.",
+      "I build AI-powered automations that save businesses 20–40+ hours per week.",
     type: "website",
     locale: "en_US",
-    siteName: "R.M. Musthak — Portfolio",
+    siteName: "Musthak M. — MSK AI Solutions",
   },
   robots: {
     index: true,

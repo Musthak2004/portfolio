@@ -18,7 +18,7 @@ export default function About() {
                 </div>
               </div>
               <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-dim text-center md:text-left mt-3">
-                /assets/profile.jpg
+                /assets/photo.jpg
               </p>
             </div>
           </div>
@@ -27,43 +27,43 @@ export default function About() {
           <div className="md:col-span-3">
             <p className="section-label">/about</p>
             <h2 className="section-heading mb-6">
-              Aspiring software engineer building for the web.
+              AI automation developer building for real businesses.
             </h2>
 
             <div className="space-y-4 text-ink-muted leading-relaxed">
               <p>
-                I&apos;m <strong className="text-ink">R.M. Musthak</strong> — an aspiring
-                software engineer passionate about building full-stack web
-                applications with Python and Django. I specialize in turning
-                ideas into robust, scalable web platforms that solve real
-                problems.
+                I&apos;m <strong className="text-ink">Musthak M.</strong> — an AI
+                automation developer and founder of{" "}
+                <strong className="text-ink">MSK AI Solutions</strong>.
+                I build AI-powered automations that save businesses 20–40+ hours
+                per week.
               </p>
               <p>
-                My journey started with a deep curiosity for how things work on
-                the web. I taught myself programming through hands-on project
-                building — from a simple HTML page to full production-grade
-                Django applications with payment processing, user authentication,
-                and complex business logic.
+                You&apos;re here because something in your operations is manual,
+                slow, or error-prone. Maybe leads are scattered across email, web
+                forms, and LinkedIn. Maybe your support team answers the same
+                questions every day. Maybe data entry eats hours that should go
+                into growth. I fix that — with n8n, Make, Zapier, Python, and AI
+                agents.
               </p>
               <p>
-                I&apos;m currently seeking <strong className="text-ink">entry-level software
-                engineering opportunities</strong> where I can contribute to
-                meaningful projects, collaborate with experienced engineers, and
-                continue growing as a developer. I bring strong fundamentals in
-                Python, database design, and software architecture, along with a
-                genuine eagerness to learn.
+                Based in <strong className="text-ink">Dambulla, Sri Lanka</strong>,
+                I&apos;m available 30+ hrs/week and open to contract-to-hire
+                opportunities. I speak Tamil (native), English, and Sinhala — and
+                I communicate clearly, solution-first, always.
               </p>
             </div>
 
-            {/* GitHub stats */}
-            <div className="grid grid-cols-3 gap-6 mt-10 pt-8 border-t border-surface-border">
+            {/* Quick facts */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
               {[
-                { value: "39+", label: "Repositories" },
-                { value: "3", label: "Major Projects" },
-                { value: "3", label: "GH Achievements" },
+                { label: "Hours/week", value: "30+" },
+                { label: "Languages", value: "3" },
+                { label: "Tools", value: "10+" },
+                { label: "Style", value: "Solutions" },
               ].map((stat, i) => (
-                <div key={i}>
-                  <p className="text-xl font-mono font-semibold text-accent">
+                <div key={i} className="border border-surface-border p-4 bg-surface-light">
+                  <p className="text-lg font-mono font-semibold text-accent">
                     {stat.value}
                   </p>
                   <p className="text-xs text-ink-dim mt-1">{stat.label}</p>
@@ -94,6 +94,17 @@ export default function About() {
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
                 LinkedIn
+              </a>
+              <a
+                href="https://www.upwork.com/freelancers/~your-profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-sm px-5 py-2.5"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+                </svg>
+                Upwork
               </a>
             </div>
           </div>

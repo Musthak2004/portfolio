@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
+  { label: "What I Build", href: "#services" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "About", href: "#about" },
 ];
@@ -58,8 +58,8 @@ export default function Navbar() {
                 href="#contact"
                 className="text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-200"
               >
-                Get in touch
-                <span className="ml-1 inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                Let&rsquo;s talk
+                <span className="ml-1 inline-block">→</span>
               </a>
             </li>
           </ul>
@@ -100,7 +100,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="block px-3 py-2.5 text-sm text-accent hover:text-accent-hover font-medium transition-colors"
               >
-                Get in touch →
+                Let&rsquo;s talk →
               </a>
             </li>
           </ul>

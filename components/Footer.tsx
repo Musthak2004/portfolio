@@ -1,6 +1,6 @@
 const footerLinks = [
+  { label: "What I Build", href: "#services" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
@@ -11,13 +11,12 @@ export default function Footer() {
     <footer className="border-t border-surface-border bg-[#07070D]">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
-          {/* Logo */}
           <a href="#hero" className="font-mono text-sm text-ink-muted hover:text-ink transition-colors">
             <span className="text-accent">&gt;</span> musthak/
             <span className="text-accent">_</span>
+            <span className="text-ink-dim text-xs ml-3">MSK AI Solutions</span>
           </a>
 
-          {/* Links */}
           <ul className="flex items-center gap-6">
             {footerLinks.map((link) => (
               <li key={link.href}>
@@ -34,7 +33,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-surface-border">
           <p className="text-xs text-ink-dim">
-            &copy; {new Date().getFullYear()} R.M. Musthak.
+            &copy; {new Date().getFullYear()} Musthak M. — MSK AI Solutions.
           </p>
           <div className="flex items-center gap-4">
             <a
