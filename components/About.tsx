@@ -96,7 +96,7 @@ export default function About() {
                 LinkedIn
               </a>
               <a
-                href="https://www.upwork.com/freelancers/~your-profile"
+                href="https://www.upwork.com/freelancers/~01498e95645e86a38a"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-sm px-5 py-2.5"

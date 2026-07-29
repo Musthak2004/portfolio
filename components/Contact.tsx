@@ -70,6 +70,25 @@ export default function Contact() {
                   </p>
                 </div>
               </a>
+
+              <a
+                href="https://www.upwork.com/freelancers/~01498e95645e86a38a"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-11 h-11 border border-surface-border bg-surface-light flex items-center justify-center text-accent shrink-0 group-hover:border-accent/30 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs text-ink-dim font-mono tracking-wide">Upwork</p>
+                  <p className="text-sm text-ink group-hover:text-accent transition-colors">
+                    AI Automation Developer
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
 
