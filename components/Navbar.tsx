@@ -3,12 +3,10 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -17,45 +15,39 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+          ? "bg-[#07070D]/80 backdrop-blur-xl border-b border-surface-border"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+      <nav className="max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="flex items-center justify-between h-16 md:h-18">
           <a
             href="#hero"
-            className="text-xl font-bold tracking-tight transition-colors duration-300"
+            className={`font-mono text-sm font-medium tracking-tight transition-colors ${
+              isScrolled ? "text-ink" : "text-ink/80"
+            }`}
           >
-            <span
-              className={
-                isScrolled ? "text-navy-900" : "text-white"
-              }
-            >
-              Your Name
-            </span>
+            <span className="text-accent">&gt;</span> musthak/
+            <span className="text-accent">_</span>
           </a>
 
-          {/* Desktop Nav */}
+          {/* Desktop */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`text-sm font-medium transition-colors duration-300 hover:text-accent-500 ${
-                    isScrolled ? "text-navy-700" : "text-white/90"
-                  }`}
+                  className="text-sm text-ink-muted hover:text-ink transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -64,69 +56,39 @@ export default function Navbar() {
             <li>
               <a
                 href="#contact"
-                className="rounded-full bg-accent-500 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:bg-accent-600 hover:shadow-lg hover:shadow-accent-500/25"
+                className="text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-200"
               >
-                Hire Me
+                Get in touch
+                <span className="ml-1 inline-block transition-transform group-hover:translate-x-0.5">→</span>
               </a>
             </li>
           </ul>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              isScrolled
-                ? "text-navy-900 hover:bg-gray-100"
-                : "text-white hover:bg-white/10"
-            }`}
+            className="md:hidden p-2 text-ink-muted hover:text-ink transition-colors"
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8h16M4 16h16" />
               )}
             </svg>
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden transition-all duration-300 overflow-hidden ${
-            isOpen ? "max-h-96 pb-4" : "max-h-0"
-          }`}
-        >
-          <ul
-            className={`space-y-1 rounded-xl p-3 ${
-              isScrolled ? "bg-white" : "bg-navy-900/90 backdrop-blur-md"
-            }`}
-          >
+        {/* Mobile menu */}
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-80 pb-5" : "max-h-0"}`}>
+          <ul className="space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    isScrolled
-                      ? "text-navy-700 hover:bg-gray-100"
-                      : "text-white/90 hover:bg-white/10"
-                  }`}
+                  className="block px-3 py-2.5 text-sm text-ink-muted hover:text-ink hover:bg-surface-light rounded transition-colors"
                 >
                   {link.label}
                 </a>
@@ -136,9 +98,9 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2.5 rounded-lg text-sm font-semibold text-center bg-accent-500 text-white hover:bg-accent-600"
+                className="block px-3 py-2.5 text-sm text-accent hover:text-accent-hover font-medium transition-colors"
               >
-                Hire Me
+                Get in touch →
               </a>
             </li>
           </ul>

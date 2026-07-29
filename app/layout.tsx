@@ -2,24 +2,26 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Freelance Web Developer | Modern Websites for Small Businesses",
+  title: "R.M. Musthak | Software Engineer — Python, Django, Full-Stack Web Development",
   description:
-    "I build modern, fast, and affordable websites for small businesses using cutting-edge AI-assisted development. Business websites, landing pages, and web app frontends.",
+    "Aspiring software engineer specializing in Python, Django, and full-stack web development. Building robust, scalable web applications for real-world problems.",
   keywords: [
+    "software engineer",
+    "python developer",
+    "django developer",
+    "full-stack developer",
+    "Musthak",
     "web developer",
-    "freelance web developer",
-    "small business websites",
-    "landing pages",
-    "AI-assisted development",
-    "modern websites",
+    "python",
+    "django",
   ],
   openGraph: {
-    title: "Freelance Web Developer | Modern Websites for Small Businesses",
+    title: "R.M. Musthak | Software Engineer",
     description:
-      "I build modern, fast, and affordable websites for small businesses.",
+      "Aspiring software engineer specializing in Python, Django, and full-stack web development.",
     type: "website",
     locale: "en_US",
-    siteName: "Your Name - Web Developer",
+    siteName: "R.M. Musthak — Portfolio",
   },
   robots: {
     index: true,
@@ -34,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

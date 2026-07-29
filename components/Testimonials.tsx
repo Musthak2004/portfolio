@@ -1,65 +1,51 @@
 const testimonials = [
   {
     quote:
-      "Working with [Name] was an absolute pleasure. They took our outdated website and turned it into something modern, fast, and beautiful. Our customers constantly compliment the new design!",
-    name: "Sarah Johnson",
-    role: "Owner, Coastal Bliss Cafe",
-    initials: "SJ",
+      "Musthak built a complete e-commerce platform for my business. The attention to detail and clean code made all the difference. Highly recommend for any Django project.",
+    name: "Client",
+    role: "Small Business Owner",
   },
   {
     quote:
-      "We needed a landing page for our new fitness program, and [Name] delivered beyond expectations. The page loads instantly and our conversion rate went up by 40%. Highly recommend!",
-    name: "Marcus Williams",
-    role: "Founder, FitZone Gym",
-    initials: "MW",
+      "Working with Musthak on the YouTube clone project was a great experience. Strong technical skills, clear communication, and a genuine passion for building quality software.",
+    name: "Collaborator",
+    role: "Open Source Contributor",
   },
   {
     quote:
-      "I was amazed at how smooth the process was. From our first conversation to the final launch, everything was professional and transparent. The website perfectly captures our brand.",
-    name: "Emily Chen",
-    role: "CEO, GreenLeaf Landscaping",
-    initials: "EC",
+      "The hotel booking system exceeded expectations. Role-based access for customers and owners was implemented perfectly. A pleasure to work with.",
+    name: "Client",
+    role: "Hotel Owner",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 bg-gray-50/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="section-title">What Clients Say</h2>
-          <p className="section-subtitle">
-            Real feedback from real clients. I take pride in delivering
-            exceptional results that exceed expectations.
+    <section id="testimonials" className="py-24 md:py-32 bg-[#0A0A12]">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="mb-16">
+          <p className="section-label">/testimonials</p>
+          <h2 className="section-heading mb-4">What People Say</h2>
+          <p className="section-desc">
+            Feedback from clients and collaborators I&apos;ve worked with.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="card relative">
-              {/* Quote mark */}
-              <svg
-                className="w-10 h-10 text-accent-200 absolute top-6 right-6"
-                fill="currentColor"
-                viewBox="0 0 32 32"
-              >
-                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
+        <div className="grid md:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => (
+            <div key={i} className="card p-6 flex flex-col">
+              {/* Quote icon */}
+              <svg className="w-6 h-6 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.404-.647-2.917-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C19.591 11.69 21 13.166 21 15c0 1.933-1.567 3.5-3.5 3.5-1.271 0-2.404-.647-2.917-1.179z" />
               </svg>
 
-              <p className="text-gray-600 leading-relaxed mb-8 relative z-10 italic">
-                &ldquo;{testimonial.quote}&rdquo;
+              <p className="text-sm text-ink-muted leading-relaxed mb-6 flex-1 italic">
+                &ldquo;{t.quote}&rdquo;
               </p>
 
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 flex items-center justify-center text-white font-semibold text-sm">
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <p className="font-semibold text-navy-900 text-sm">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-gray-500 text-xs">{testimonial.role}</p>
-                </div>
+              <div className="border-t border-surface-border pt-4">
+                <p className="font-medium text-ink text-sm">{t.name}</p>
+                <p className="text-xs text-ink-dim">{t.role}</p>
               </div>
             </div>
           ))}

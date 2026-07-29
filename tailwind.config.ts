@@ -9,40 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          50: "#f0f3f8",
-          100: "#d9e0ed",
-          200: "#b3c1db",
-          300: "#8da2c9",
-          400: "#6683b7",
-          500: "#4a6fa5",
-          600: "#3a5a8a",
-          700: "#2d466e",
-          800: "#1e3050",
-          900: "#0f1b33",
-          950: "#070e1e",
+        surface: {
+          DEFAULT: "#111118",
+          light: "#1A1B23",
+          border: "#282833",
+        },
+        ink: {
+          DEFAULT: "#E8E8ED",
+          muted: "#88889A",
+          dim: "#555567",
         },
         accent: {
-          50: "#ecfdf5",
-          100: "#d1fae5",
-          200: "#a7f3d0",
-          300: "#6ee7b7",
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065f46",
-          900: "#064e3b",
-          950: "#022c22",
+          DEFAULT: "#7C7CFF",
+          hover: "#9393FF",
+          glow: "rgba(124, 124, 255, 0.08)",
+          muted: "rgba(124, 124, 255, 0.15)",
         },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       animation: {
-        "fade-in": "fadeIn 0.5s ease-out forwards",
-        "slide-up": "slideUp 0.6s ease-out forwards",
-        "pulse-slow": "pulse 3s infinite",
+        "fade-in": "fadeIn 0.6s ease-out forwards",
+        "slide-up": "slideUp 0.7s ease-out forwards",
+        "cursor-blink": "blink 1s step-end infinite",
+        "grid-scroll": "gridScroll 20s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -50,8 +42,16 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         slideUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        gridScroll: {
+          "0%": { transform: "translate(0, 0)" },
+          "100%": { transform: "translate(40px, 40px)" },
         },
       },
     },
