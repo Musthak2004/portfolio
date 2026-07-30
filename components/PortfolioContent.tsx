@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import About from "@/components/About";
+import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import IntroScreen from "@/components/IntroScreen";
@@ -55,6 +56,7 @@ export default function PortfolioContent() {
           <Skills />
           <Experience />
           <About />
+          <Portfolio />
           <Contact />
         </main>
         <Footer />
