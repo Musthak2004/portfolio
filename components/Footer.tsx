@@ -14,7 +14,7 @@ export default function Footer() {
           <a href="#hero" className="font-mono text-sm text-ink-muted hover:text-ink transition-colors">
             <span className="text-accent">&gt;</span> musthak/
             <span className="text-accent">_</span>
-            <span className="text-ink-dim text-xs ml-3">MSK AI Solutions</span>
+            <span className="text-ink-dim text-xs ml-3">MS Bee</span>
           </a>
 
           <ul className="flex items-center gap-6">
@@ -33,7 +33,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-surface-border">
           <p className="text-xs text-ink-dim">
-            &copy; {new Date().getFullYear()} Musthak M. — MSK AI Solutions.
+            &copy; {new Date().getFullYear()} Musthak M. — MS Bee.
           </p>
           <div className="flex items-center gap-4">
             <a

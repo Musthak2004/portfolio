@@ -1,14 +1,14 @@
 const timeline = [
   {
-    period: "Jun 2026 — Present",
-    title: "Co-Founder",
-    subtitle: "MSK AI Solutions",
+    period: "Jul 2026 — Present",
+    title: "Founder",
+    subtitle: "MS Bee",
     description:
-      "Founded MSK AI Solutions — an AI company building automation for real businesses, not just theoretical demos. Every workflow ships with monitoring, error handling, and documentation.",
+      "Founded MS Bee — a web studio helping Sri Lankan small businesses get found online. I send free concept websites to businesses without one, then build the real site when they're ready.",
     highlights: [
-      "AI-powered lead follow-up that's seamless and cost-effective",
-      "Built and deployed customer support agents handling 80%+ inquiries",
-      "CRM automation pipelines from web forms, email, LinkedIn, and ads",
+      "Sent 245+ free concept mockups to businesses across 8+ cities",
+      "Built and shipped 4 sample sites — restaurant, SaaS, law, and hardware",
+      "Also build AI automations (support agents, lead routing) for clients who want to go further",
     ],
   },
   {
@@ -16,7 +16,7 @@ const timeline = [
     title: "Bachelor of Engineering (BEng)",
     subtitle: "ESOFT Metro Campus, Sri Lanka",
     description:
-      "Pursuing a degree in Engineering while actively building and shipping production automation systems for businesses.",
+      "Pursuing a degree in Engineering while actively shipping production websites and automations for real businesses.",
     highlights: [
       "Full-time self-directed learning alongside formal education",
       "Building real client projects with n8n, Make, Python, and AI agents",
@@ -28,11 +28,11 @@ const timeline = [
     title: "Full-Stack Foundations",
     subtitle: "Python, JavaScript, Web Development",
     description:
-      "Built a strong foundation in programming and web development. Started with Python and Django, expanded into JavaScript, TypeScript, and eventually discovered the power of AI-powered automation.",
+      "Built a strong foundation in programming and web development — starting with Python and Django, expanding into JavaScript and TypeScript, and applying it all to real client sites and small automations.",
     highlights: [
       "Built full-stack applications with Python, Django, and PostgreSQL",
       "39+ public repositories on GitHub across various tech stacks",
-      "Transitioned focus to AI agents, workflow automation, and no-code/low-code tooling",
+      "Now focused on Next.js, Tailwind, and fast delivery for business websites",
     ],
   },
 ];

@@ -24,30 +24,28 @@ export default function About() {
           <div className="md:col-span-3">
             <p className="section-label">/about</p>
             <h2 className="section-heading mb-6">
-              AI automation developer building for real businesses.
+              I build websites for businesses that aren&apos;t being found.
             </h2>
 
             <div className="space-y-4 text-ink-muted leading-relaxed">
               <p>
-                I&apos;m <strong className="text-ink">Musthak M.</strong> — an AI
-                automation developer and founder of{" "}
-                <strong className="text-ink">MSK AI Solutions</strong>.
-                I build AI-powered automations that save businesses 20–40+ hours
-                per week.
+                I&apos;m <strong className="text-ink">Musthak M.</strong> — founder of{" "}
+                <strong className="text-ink">MS Bee</strong>. I build fast,
+                mobile-friendly websites for Sri Lankan small businesses so
+                customers find them on Google instead of their competitors.
               </p>
               <p>
-                You&apos;re here because something in your operations is manual,
-                slow, or error-prone. Maybe leads are scattered across email, web
-                forms, and LinkedIn. Maybe your support team answers the same
-                questions every day. Maybe data entry eats hours that should go
-                into growth. I fix that — with n8n, Make, Zapier, Python, and AI
-                agents.
+                Here&apos;s how it works: I design a free concept of your website
+                and show it to you before you spend anything. If it looks right,
+                we go live — usually within days, not months. Restaurants, shops,
+                salons, hotels, hardware, tours — if your customers search for
+                you online, you deserve to show up.
               </p>
               <p>
                 Based in <strong className="text-ink">Dambulla, Sri Lanka</strong>,
-                I&apos;m available 30+ hrs/week and open to contract-to-hire
-                opportunities. I speak Tamil (native), English, and Sinhala — and
-                I communicate clearly, solution-first, always.
+                I work with businesses across the island. I speak Tamil (native),
+                English, and Sinhala — and I communicate clearly, solution-first,
+                always.
               </p>
             </div>
 

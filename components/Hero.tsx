@@ -22,35 +22,33 @@ export default function Hero() {
           </div>
 
           <div className="inline-flex items-center gap-2 font-mono text-xs text-accent border border-accent/20 bg-accent/5 px-3 py-1.5 mb-6">
-            Co-Founder @ MSK AI Solutions
+            Founder @ MS Bee
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.08] tracking-tight text-balance mb-4">
             I build{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
-              AI-powered automations
+              websites for small businesses
             </span>
             <br />
-            that save 20–40+ hrs/week
+            that get found on Google
           </h1>
 
           <div className="flex items-center justify-center gap-2 font-mono text-sm text-ink-dim mb-8">
             <span className="text-accent">$</span>
             <span>stack: </span>
-            <span className="text-accent">n8n</span>
+            <span className="text-accent">Next.js</span>
             <span className="text-ink-muted">·</span>
-            <span className="text-accent">Make</span>
+            <span className="text-accent">Tailwind</span>
             <span className="text-ink-muted">·</span>
-            <span className="text-accent">Python</span>
-            <span className="text-ink-muted">·</span>
-            <span className="text-accent">Claude AI</span>
+            <span className="text-accent">Vercel</span>
             <span className="animate-cursor-blink text-ink-dim">_</span>
           </div>
 
           <p className="text-ink-muted text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-            AI customer support agents, CRM & lead automation, data pipelines,
-            voice agents, and custom workflows — every system ships with
-            monitoring, error handling, and documentation.
+            Landing pages, business sites, and full websites for restaurants,
+            shops, salons, hotels, and local trade — delivered in days, with your
+            real phone number one tap away. No cost to see your concept first.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

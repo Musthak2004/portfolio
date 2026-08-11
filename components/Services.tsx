@@ -1,37 +1,37 @@
 const offerings = [
   {
-    title: "AI Customer Support Agents",
+    title: "Landing Page",
     description:
-      "24/7 chatbots that handle 80% of inquiries using your knowledge base. Trained on your docs, FAQ, and product info — answers feel human, escalate only when needed.",
-    tags: ["n8n", "Claude AI", "OpenAI", "WhatsApp/Web"],
+      "A single, focused page that sells one thing — your business, a promotion, or a product. Perfect for getting found on Google fast.",
+    tags: ["Starter", "15,000–25,000 LKR"],
     gradient: "from-accent/10 to-transparent",
   },
   {
-    title: "CRM & Lead Automation",
+    title: "Small Business Site (3–5 pages)",
     description:
-      "Capture, enrich, and route leads from any source — web forms, email, LinkedIn, ads — straight into HubSpot, Salesforce, or Google Sheets. No more manual data entry.",
-    tags: ["Make", "Zapier", "HubSpot", "Sheets"],
+      "Home, services, about, and contact — the complete presence a restaurant, shop, salon, or local business needs to be taken seriously.",
+    tags: ["Standard", "30,000–50,000 LKR"],
     gradient: "from-accent/10 to-transparent",
   },
   {
-    title: "Data Pipelines & Sync",
+    title: "Full Website + Features",
     description:
-      "Scrape, transform, and sync data between 20+ tools without manual work. Clean ETL pipelines that keep your systems aligned in real time.",
-    tags: ["Python", "n8n", "PostgreSQL", "MongoDB"],
+      "A full business site with online booking, ordering, galleries, or customer forms built in. For businesses ready to take enquiries online.",
+    tags: ["Premium", "60,000–100,000 LKR"],
     gradient: "from-accent/10 to-transparent",
   },
   {
-    title: "AI Voice Agents",
+    title: "Mobile-First & Findable on Google",
     description:
-      "Inbound and outbound calling with natural conversation. Built on Vapi, Retell, and Twilio — handles bookings, support, and follow-ups at scale.",
-    tags: ["Vapi", "Retell", "Twilio", "AI"],
+      "Every site looks right on every phone and ships with proper page titles and descriptions, so customers find you instead of a competitor.",
+    tags: ["Mobile-first", "SEO-ready", "Vercel hosting"],
     gradient: "from-accent/10 to-transparent",
   },
   {
-    title: "Custom AI Workflows",
+    title: "AI Automations (also)",
     description:
-      "Document processing, content generation, email sequences, and anything else — powered by Claude and GPT. Tailored to your exact business logic.",
-    tags: ["Claude AI", "OpenAI", "Python", "n8n"],
+      "Beyond websites — I also build AI support agents, lead automation, and data workflows for businesses that want to go further.",
+    tags: ["n8n", "Claude AI", "Make", "Voice agents"],
     gradient: "from-accent/10 to-transparent",
   },
 ];
@@ -42,10 +42,10 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="mb-16">
           <p className="section-label">/what-i-build</p>
-          <h2 className="section-heading mb-4">Automations I Ship</h2>
+          <h2 className="section-heading mb-4">Websites I Build</h2>
           <p className="section-desc">
-            Every workflow comes with monitoring, error handling, and documentation
-            — so you&apos;re never left guessing.
+            Clear tiers, clear pricing, delivered in days. 50% upfront, 50% on
+            delivery — via PayPal.
           </p>
         </div>
 

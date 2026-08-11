@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
-  title: "Musthak M. | AI Automation Developer — n8n, Make, Python, AI Agents",
+  title: "MS Bee | Websites for Small Businesses in Sri Lanka — Musthak M.",
   description:
-    "I build AI-powered automations that save businesses 20–40+ hours per week. AI agents, CRM automation, data pipelines, and voice agents with n8n, Make, Python, and Claude AI.",
+    "MS Bee builds fast, mobile-friendly websites for Sri Lankan small businesses that get found on Google. Landing pages, business sites, and full sites — delivered in days, hosted on Vercel.",
   keywords: [
-    "AI automation developer",
-    "n8n developer",
-    "make.com expert",
-    "AI agents",
-    "automation",
+    "web design Sri Lanka",
+    "small business website",
+    "website design",
     "Musthak",
-    "MSK AI Solutions",
-    "workflow automation",
-    "CRM automation",
+    "MS Bee",
+    "landing page",
+    "business website Sri Lanka",
+    "Next.js developer",
+    "website for restaurant",
+    "website for shop",
   ],
   openGraph: {
-    title: "Musthak M. | AI Automation Developer",
+    title: "MS Bee | Websites for Small Businesses in Sri Lanka",
     description:
-      "I build AI-powered automations that save businesses 20–40+ hours per week.",
+      "Fast, mobile-friendly websites that get small Sri Lankan businesses found on Google. Delivered in days.",
     type: "website",
     locale: "en_US",
-    siteName: "Musthak M. — MSK AI Solutions",
+    siteName: "MS Bee — Musthak M.",
   },
   robots: {
     index: true,
@@ -37,7 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

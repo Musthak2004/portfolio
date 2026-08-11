@@ -30,6 +30,16 @@ const projects = [
     gradient: "from-slate-700 to-slate-900",
     icon: "⚖",
   },
+  {
+    title: "Pinnacle Hardware & Building Supplies",
+    description:
+      "Multi-page website for a builders merchant featuring six product departments, tiered trade accounts, and contact. Industrial design with pricing tiers that converts walk-ins and site managers.",
+    category: "Local Trade / Hardware",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    url: "https://pinnacle-hardware.vercel.app/",
+    gradient: "from-slate-800 to-slate-950",
+    icon: "🛠",
+  },
 ];
 
 export default function Portfolio() {

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 const bootLines = [
-  { text: "> Initializing MSK AI Solutions v1.0...", delay: 400 },
-  { text: "> Loading automation modules...", delay: 900 },
-  { text: "> Deploying AI agents...", delay: 1400 },
+  { text: "> Initializing MS Bee v1.0...", delay: 400 },
+  { text: "> Compiling mobile-first styles...", delay: 900 },
+  { text: "> Deploying to Vercel...", delay: 1400 },
   { text: "  System ready.", delay: 2000 },
   { text: "", delay: 2500 },
   { text: "  Welcome, I'm Musthak M.", delay: 2800 },
