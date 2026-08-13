@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import About from "@/components/About";
@@ -53,6 +54,7 @@ export default function PortfolioContent() {
         <main>
           <Hero />
           <Services />
+          <Pricing />
           <Skills />
           <Experience />
           <About />
