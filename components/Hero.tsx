@@ -51,7 +51,7 @@ export default function Hero() {
             real phone number one tap away. No cost to see your concept first.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
             <a href="#services" className="btn-primary w-full sm:w-auto justify-center">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
@@ -60,6 +60,21 @@ export default function Hero() {
             </a>
             <a href="#contact" className="btn-outline w-full sm:w-auto justify-center">
               Let&rsquo;s Talk
+            </a>
+          </div>
+
+          {/* Free Website Audit CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="https://audit-tool-tan.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full sm:w-auto justify-center flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Free Website Audit
             </a>
           </div>
         </div>

@@ -28,6 +28,8 @@ A modern, interactive portfolio website built with **Next.js 14**, **TypeScript*
 | Ember & Oak Restaurant | Restaurant / Hospitality | [View](https://ember-and-oak-teal.vercel.app) |
 | FlowSpace SaaS Landing Page | SaaS / Technology | [View](https://flowspace-landing-black.vercel.app) |
 | Harrington & Cole Law Firm | Professional Services / Legal | [View](https://harrington-cole-llp.vercel.app) |
+| Pinnacle Hardware & Building Supplies | Local Trade / Hardware | [View](https://pinnacle-hardware.vercel.app) |
+| Ridgeway Hardware & Tool Co. | Neighborhood Retail / Hardware | [View](https://ridgeway-hardware.vercel.app) |
 
 ## Getting Started
 

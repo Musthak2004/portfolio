@@ -40,6 +40,16 @@ const projects = [
     gradient: "from-slate-800 to-slate-950",
     icon: "🛠",
   },
+  {
+    title: "Ridgeway Hardware & Tool Co.",
+    description:
+      "Multi-page website for a neighborhood hardware store featuring six departments, services that fix as well as sell (keys cut while you wait), and honest-advice positioning. Warm retail design with service-led layout.",
+    category: "Neighborhood Retail / Hardware",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    url: "https://ridgeway-hardware.vercel.app/",
+    gradient: "from-emerald-700 to-green-900",
+    icon: "🧰",
+  },
 ];
 
 export default function Portfolio() {
