@@ -1,35 +1,33 @@
-# Portfolio — Freelance Web Developer
+# MS Bee — Founder & Builder Portfolio
 
-A modern, interactive portfolio website built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**. Features a terminal-style boot intro screen, floating 3D background geometry, and a clean showcase of sample projects for small businesses.
+A technical founder portfolio for **R.M. Musthak (Musthak), Founder & Builder @ MS Bee** — dark terminal aesthetic built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**.
 
 ## Live Site
 
-[**portfolio-three-blue-59.vercel.app**](https://portfolio-three-blue-59.vercel.app)
+[**msbee.dpdns.org**](https://msbee.dpdns.org)
 
 ## Tech Stack
 
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **3D Graphics:** @react-three/fiber, @react-three/drei (Three.js)
-- **Deployment:** Vercel
+- **Deployment:** Vercel (custom domain `msbee.dpdns.org`)
 
-## Features
+## Sections
 
-- Terminal-style boot intro screen with `prefers-reduced-motion` support
-- Interactive 3D geometry background with floating wireframe shapes
-- Responsive, mobile-friendly layout
-- Sections: Hero, Services, Skills, Experience, About, Portfolio, Contact
+Navbar, Hero (terminal), Proof stats, What I Build, Selected Work (featured client: Orikma Ref & Trading), Products I've Built (CleanSched, DevShield), Automation (AI Email Lead Follow-Up), Other Selected Work, Services, About, Currently Building, Contact, Footer.
 
-## Sample Projects
+## Featured Work
 
-| Project | Category | Live URL |
+| Project | Type | Live URL |
 |---|---|---|
-| Ember & Oak Restaurant | Restaurant / Hospitality | [View](https://ember-and-oak-teal.vercel.app) |
-| FlowSpace SaaS Landing Page | SaaS / Technology | [View](https://flowspace-landing-black.vercel.app) |
-| Harrington & Cole Law Firm | Professional Services / Legal | [View](https://harrington-cole-llp.vercel.app) |
-| Pinnacle Hardware & Building Supplies | Local Trade / Hardware | [View](https://pinnacle-hardware.vercel.app) |
-| Ridgeway Hardware & Tool Co. | Neighborhood Retail / Hardware | [View](https://ridgeway-hardware.vercel.app) |
+| Orikma Ref & Trading (Pvt) Ltd | Client Project · Business Website | [View](https://www.orikma.lk/) |
+| CleanSched | My Product · Micro-SaaS | [View](https://sparkleshine.de5.net/) |
+| DevShield | My Product · Digital Product | [View](https://musthakcool.gumroad.com/l/devshield-free) |
+| AI Email Lead Follow-Up System | My Automation · AI Workflow | [Demo](https://loom.com/share/329f152f43174149913f9dbc5855d69d) |
+| Ember & Oak Restaurant | Web Project | [View](https://ember-and-oak-teal.vercel.app) |
+| FlowSpace SaaS Landing Page | Web Project | [View](https://flowspace-landing-black.vercel.app) |
+| Harrington & Cole Law Firm | Web Project | [View](https://harrington-cole-llp.vercel.app) |
 
 ## Getting Started
 
@@ -45,8 +43,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```bash
 npm run build
 ```
-
-Produces a fully static export with all pages prerendered.
 
 ## Deployment
 

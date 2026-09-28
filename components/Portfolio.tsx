@@ -1,146 +1,142 @@
-
 const projects = [
   {
     title: "Ember & Oak Restaurant",
-    description:
-      "Complete website for an upscale restaurant featuring an interactive menu, gallery, reservations, and contact. Dark, elegant design with warm gold accents that reflects the restaurant's refined brand identity.",
     category: "Restaurant / Hospitality",
+    problem:
+      "An upscale restaurant with no online presence that matched its brand.",
+    solution:
+      "Interactive menu, gallery and reservations in a dark, elegant design.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     url: "https://ember-and-oak-teal.vercel.app/",
     gradient: "from-amber-700 to-yellow-600",
     icon: "🍽",
   },
   {
-    title: "FlowSpace SaaS Landing Page",
-    description:
-      "High-converting landing page for a project management SaaS including hero, features, pricing, testimonials, and FAQ sections. Designed to drive sign-ups and showcase product value clearly.",
+    title: "FlowSpace SaaS",
     category: "SaaS / Technology",
+    problem: "A project-management tool needing a page that converts visitors.",
+    solution:
+      "Hero, features, pricing and FAQ structured to drive sign-ups clearly.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     url: "https://flowspace-landing-black.vercel.app/",
     gradient: "from-blue-600 to-indigo-600",
     icon: "🚀",
   },
   {
-    title: "Harrington & Cole Law Firm",
-    description:
-      "Professional multi-page website for a boutique law firm including practice areas, team profiles, case results, and contact. Trustworthy, authoritative design that instills client confidence.",
+    title: "Harrington & Cole",
     category: "Professional Services / Legal",
+    problem: "A boutique law firm needing authority and trust online.",
+    solution:
+      "Practice areas, team profiles and case results in a confident layout.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     url: "https://harrington-cole-llp.vercel.app/",
     gradient: "from-slate-700 to-slate-900",
     icon: "⚖",
   },
-  {
-    title: "Pinnacle Hardware & Building Supplies",
-    description:
-      "Multi-page website for a builders merchant featuring six product departments, tiered trade accounts, and contact. Industrial design with pricing tiers that converts walk-ins and site managers.",
-    category: "Local Trade / Hardware",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    url: "https://pinnacle-hardware.vercel.app/",
-    gradient: "from-slate-800 to-slate-950",
-    icon: "🛠",
-  },
-  {
-    title: "Ridgeway Hardware & Tool Co.",
-    description:
-      "Multi-page website for a neighborhood hardware store featuring six departments, services that fix as well as sell (keys cut while you wait), and honest-advice positioning. Warm retail design with service-led layout.",
-    category: "Neighborhood Retail / Hardware",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    url: "https://ridgeway-hardware.vercel.app/",
-    gradient: "from-emerald-700 to-green-900",
-    icon: "🧰",
-  },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 sm:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Recent Projects</h2>
-          <p className="section-subtitle">
-            A selection of websites I&apos;ve built for small businesses. Each
-            project is tailored to the client&apos;s unique needs and brand.
+    <section aria-labelledby="webwork-heading" className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="mb-12 md:mb-16">
+          <p className="section-label">/more-work</p>
+          <h2 id="webwork-heading" className="section-heading mb-4">
+            Other Selected Work
+          </h2>
+          <p className="section-desc">
+            More development work — live demos, real code.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="card group relative flex flex-col overflow-hidden"
             >
-              {/* Gradient header with icon */}
+              {/* Visual header */}
               <div
-                className={`relative flex h-48 items-center justify-center bg-gradient-to-br ${project.gradient} overflow-hidden`}
+                className={`relative flex h-44 items-center justify-center bg-gradient-to-br ${project.gradient} overflow-hidden`}
+                role="img"
+                aria-label={`${project.title} — ${project.category} project preview`}
               >
-                <span className="relative z-10 text-6xl select-none">
+                <span className="relative z-10 text-5xl select-none" aria-hidden="true">
                   {project.icon}
                 </span>
-                {/* Animated overlay on hover */}
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-                {/* Decorative grid pattern */}
+                <div
+                  className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10"
+                  aria-hidden="true"
+                />
                 <div
                   className="absolute inset-0 opacity-20"
+                  aria-hidden="true"
                   style={{
                     backgroundImage:
                       "radial-gradient(circle at 12px 12px, rgba(255,255,255,0.3) 1px, transparent 0)",
                     backgroundSize: "24px 24px",
                   }}
                 />
-                {/* Category badge */}
-                <span className="absolute bottom-4 left-4 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-white">
-                  {project.category}
+                <span className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.12em] bg-black/40 backdrop-blur-sm px-2.5 py-1 text-white border border-white/10">
+                  WEB PROJECT / DEMO
                 </span>
               </div>
 
               {/* Card body */}
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-2 text-lg font-bold text-gray-900 transition-colors group-hover:text-accent-600">
+              <div className="flex flex-1 flex-col p-5 md:p-6">
+                <p className="font-mono text-[11px] text-accent mb-1.5">
+                  {project.category}
+                </p>
+                <h3 className="mb-2 text-base md:text-lg font-bold text-ink">
                   {project.title}
                 </h3>
-                <p className="mb-5 text-sm leading-relaxed text-gray-600">
-                  {project.description}
+                <p className="mb-1.5 text-sm leading-relaxed text-ink-muted">
+                  <span className="text-ink-dim">Problem: </span>
+                  {project.problem}
+                </p>
+                <p className="mb-4 text-sm leading-relaxed text-ink-muted">
+                  <span className="text-ink-dim">Solution: </span>
+                  {project.solution}
                 </p>
 
-                {/* Tech tags */}
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
+                <div className="mb-5 flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
                     <span
-                      key={i}
-                      className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600"
+                      key={tag}
+                      className="px-2.5 py-1 font-mono text-[10px] text-ink-dim bg-[#111118] border border-surface-border"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Spacer to push button down */}
                 <div className="mt-auto">
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-700 hover:shadow-md active:scale-[0.97]"
+                    className="btn-outline w-full justify-center !px-5 !py-3 min-h-[48px]"
+                    aria-label={`Live demo of ${project.title} — opens in a new tab`}
                   >
-                    View Live Site
+                    Live Demo
                     <svg
                       className="h-4 w-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth={2}
+                        strokeWidth={1.5}
                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                       />
                     </svg>
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

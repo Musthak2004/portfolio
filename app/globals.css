@@ -8,10 +8,12 @@
   html {
     scroll-behavior: smooth;
     @apply bg-[#07070D] text-ink;
+    overflow-x: clip;
   }
 
   body {
     @apply font-sans antialiased;
+    overflow-x: clip;
   }
 
   ::selection {
@@ -26,6 +28,16 @@
   }
   ::-webkit-scrollbar-thumb {
     @apply bg-surface-border rounded-full;
+  }
+
+  :focus-visible {
+    outline: 2px solid #9393ff;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img {
+    max-width: 100%;
   }
 }
 
@@ -65,6 +77,14 @@
   .tag {
     @apply inline-flex px-3 py-1 text-xs font-mono text-ink-muted bg-[#1A1B23] border border-surface-border;
   }
+
+  .eyebrow-pill {
+    @apply inline-flex items-center gap-2 font-mono text-xs text-accent border border-accent/20 bg-accent/5 px-3 py-1.5;
+  }
+
+  .status-dot {
+    @apply w-1.5 h-1.5 rounded-full shrink-0;
+  }
 }
 
 @layer utilities {
@@ -80,5 +100,279 @@
   .bg-grid-light {
     background-image: radial-gradient(circle at 1px 1px, rgba(124, 124, 255, 0.03) 1px, transparent 0);
     background-size: 32px 32px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cosmic-planets,
+  .cosmic-cursor {
+    display: none !important;
+  }
+  .nebula {
+    animation: none !important;
+  }
+}
+
+/* ---------- Cosmic universe layers ---------- */
+
+.cosmic-root {
+  --px: 0;
+  --py: 0;
+  background: #050509;
+}
+
+.cosmic-base {
+  background:
+    radial-gradient(1200px 800px at 78% -10%, rgba(76, 74, 190, 0.14), transparent 60%),
+    radial-gradient(1000px 700px at 8% 22%, rgba(124, 124, 255, 0.07), transparent 60%),
+    radial-gradient(900px 900px at 50% 110%, rgba(88, 60, 180, 0.08), transparent 60%),
+    linear-gradient(180deg, #050509 0%, #07070f 45%, #050509 100%);
+}
+
+.cosmic-nebulae {
+  transform: translate3d(calc(var(--px) * -14px), calc(var(--py) * -14px), 0);
+  transition: transform 0.3s ease-out;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  will-change: transform, opacity;
+}
+
+.nebula-a {
+  width: 44vw;
+  height: 44vw;
+  max-width: 560px;
+  max-height: 560px;
+  top: -12vw;
+  left: -10vw;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.13), transparent 65%);
+  animation: nebula-drift 36s ease-in-out infinite alternate;
+}
+
+.nebula-b {
+  width: 40vw;
+  height: 40vw;
+  max-width: 520px;
+  max-height: 520px;
+  top: 8%;
+  right: -12vw;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.11), transparent 65%);
+  animation: nebula-drift 44s ease-in-out infinite alternate-reverse;
+}
+
+.nebula-c {
+  width: 36vw;
+  height: 36vw;
+  max-width: 480px;
+  max-height: 480px;
+  bottom: -10vw;
+  left: 22vw;
+  background: radial-gradient(circle, rgba(56, 120, 255, 0.09), transparent 65%);
+  animation: nebula-drift 52s ease-in-out infinite alternate;
+}
+
+.nebula-d {
+  width: 30vw;
+  height: 30vw;
+  max-width: 420px;
+  max-height: 420px;
+  top: 46%;
+  left: -12vw;
+  background: radial-gradient(circle, rgba(190, 90, 200, 0.06), transparent 65%);
+  animation: nebula-drift 60s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes nebula-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(24px, -20px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+/* Planets — edges only, decorative depth */
+
+.cosmic-planets {
+  transform: translate3d(calc(var(--px) * -22px), calc(var(--py) * -22px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+.planet {
+  position: absolute;
+  will-change: transform;
+}
+
+.planet-main {
+  top: 9%;
+  right: 4%;
+  width: clamp(180px, 24vw, 320px);
+  height: clamp(180px, 24vw, 320px);
+  animation: planet-float 26s ease-in-out infinite alternate;
+  opacity: 0.9;
+}
+
+.planet-small {
+  bottom: 6%;
+  right: 10%;
+  width: clamp(90px, 11vw, 140px);
+  height: clamp(90px, 11vw, 140px);
+  animation: planet-float 32s ease-in-out infinite alternate-reverse;
+  opacity: 0.75;
+}
+
+.planet-moon {
+  top: 58%;
+  left: 3%;
+  width: clamp(40px, 5vw, 64px);
+  height: clamp(40px, 5vw, 64px);
+  animation: planet-float 38s ease-in-out infinite alternate;
+  opacity: 0.6;
+}
+
+.planet-surface {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  position: relative;
+}
+
+.planet-blue {
+  background: radial-gradient(circle at 32% 28%, #aab4ff 0%, #6d6df2 18%, #2b2f7a 48%, #101232 72%, #07081a 100%);
+  box-shadow:
+    0 0 60px 8px rgba(124, 124, 255, 0.16),
+    0 0 140px 30px rgba(80, 80, 220, 0.08),
+    inset -18px -22px 50px rgba(0, 0, 0, 0.55);
+}
+
+.planet-violet {
+  background: radial-gradient(circle at 34% 30%, #d3c2ff 0%, #8b6ff0 20%, #3c2a7d 52%, #14102e 76%, #080614 100%);
+  box-shadow:
+    0 0 44px 6px rgba(167, 139, 250, 0.14),
+    inset -12px -16px 36px rgba(0, 0, 0, 0.55);
+}
+
+.planet-moon-surface {
+  background: radial-gradient(circle at 36% 32%, #e8e8f2 0%, #9a9ab0 34%, #4a4a62 68%, #1c1c28 100%);
+  box-shadow: 0 0 26px 4px rgba(200, 200, 230, 0.12), inset -8px -10px 22px rgba(0, 0, 0, 0.5);
+}
+
+.planet-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 135%;
+  height: 34%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  border: 1px solid rgba(160, 160, 255, 0.22);
+  border-radius: 9999px;
+  filter: blur(0.4px);
+}
+
+@keyframes planet-float {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(-10px, 16px, 0) rotate(4deg);
+  }
+}
+
+/* Cursor light — large soft volumetric glow, desktop fine-pointer only */
+
+.cosmic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(124, 124, 255, 0.1) 0%, rgba(124, 124, 255, 0.045) 35%, transparent 65%);
+  filter: blur(10px);
+  opacity: 0;
+  display: none;
+  will-change: transform, opacity;
+}
+
+@media (pointer: fine) and (min-width: 1024px) {
+  .cosmic-cursor {
+    display: block;
+  }
+}
+
+/* Subtle card tilt highlight (JS sets --mx/--my + transform) */
+
+.card.cosmic-tilt {
+  position: relative;
+}
+
+.card.cosmic-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(147, 147, 255, 0.09), transparent 65%);
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile: fewer, dimmer decorations — never overlap content */
+
+@media (max-width: 768px) {
+  .planet-main {
+    width: 150px;
+    height: 150px;
+    top: 6%;
+    right: -46px;
+    opacity: 0.55;
+  }
+  .planet-small {
+    display: none;
+  }
+  .planet-moon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.4;
+  }
+  .nebula {
+    filter: blur(60px);
+    opacity: 0.7;
   }
 }

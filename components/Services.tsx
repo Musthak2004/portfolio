@@ -1,86 +1,75 @@
-const offerings = [
+const services = [
   {
-    title: "Landing Page",
-    description:
-      "A single, focused page that sells one thing — your business, a promotion, or a product. Perfect for getting found on Google fast.",
-    tags: ["Starter", "15,000–25,000 LKR"],
-    gradient: "from-accent/10 to-transparent",
+    index: "01",
+    title: "Web Development",
+    description: "Modern websites, landing pages and web applications.",
+    primary: true,
   },
   {
-    title: "Small Business Site (3–5 pages)",
-    description:
-      "Home, services, about, and contact — the complete presence a restaurant, shop, salon, or local business needs to be taken seriously.",
-    tags: ["Standard", "30,000–50,000 LKR"],
-    gradient: "from-accent/10 to-transparent",
+    index: "02",
+    title: "AI Automation",
+    description: "Lead follow-up, support agents and workflow automation.",
+    primary: true,
   },
   {
-    title: "Full Website + Features",
-    description:
-      "A full business site with online booking, ordering, galleries, or customer forms built in. For businesses ready to take enquiries online.",
-    tags: ["Premium", "60,000–100,000 LKR"],
-    gradient: "from-accent/10 to-transparent",
+    index: "03",
+    title: "Custom Software",
+    description: "Business tools and internal systems.",
+    primary: false,
   },
   {
-    title: "Mobile-First & Findable on Google",
-    description:
-      "Every site looks right on every phone and ships with proper page titles and descriptions, so customers find you instead of a competitor.",
-    tags: ["Mobile-first", "SEO-ready", "Vercel hosting"],
-    gradient: "from-accent/10 to-transparent",
-  },
-  {
-    title: "AI Automations (also)",
-    description:
-      "Beyond websites — I also build AI support agents, lead automation, and data workflows for businesses that want to go further.",
-    tags: ["n8n", "Claude AI", "Make", "Voice agents"],
-    gradient: "from-accent/10 to-transparent",
+    index: "04",
+    title: "Digital Products",
+    description: "Developer-focused resources and practical digital products.",
+    primary: false,
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-[#0A0A12]">
+    <section
+      id="services"
+      aria-labelledby="services-heading"
+      className="py-24 md:py-32 bg-[#0A0A12] scroll-mt-16"
+    >
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="mb-16">
-          <p className="section-label">/what-i-build</p>
-          <h2 className="section-heading mb-4">Websites I Build</h2>
+        <div className="mb-12 md:mb-16">
+          <p className="section-label">/services</p>
+          <h2 id="services-heading" className="section-heading mb-4">
+            Services
+          </h2>
           <p className="section-desc">
-            Clear tiers, clear pricing, delivered in days. 50% upfront, 50% on
-            delivery — via PayPal.
+            Founder-led builds — I scope, design and ship.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {offerings.map((item, index) => (
-            <div
-              key={index}
-              className="card p-6 group relative overflow-hidden"
+        <div className="grid sm:grid-cols-2 gap-4">
+          {services.map((item) => (
+            <article
+              key={item.index}
+              className={`p-6 md:p-7 group relative overflow-hidden border transition-all duration-300 ${
+                item.primary
+                  ? "bg-surface-light border-accent/25 hover:border-accent/50"
+                  : "card"
+              }`}
             >
-              {/* Gradient overlay on hover */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${item.gradient}`} />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="font-mono text-[10px] tracking-[0.15em] text-ink-dim border border-surface-border px-2 py-1">
-                    {String(index + 1).padStart(2, "0")}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-[10px] tracking-[0.15em] text-ink-dim border border-surface-border px-2 py-1">
+                  {item.index}
+                </span>
+                <h3 className="font-semibold text-ink text-base md:text-lg">
+                  {item.title}
+                </h3>
+                {item.primary && (
+                  <span className="ml-auto font-mono text-[10px] tracking-[0.12em] text-accent border border-accent/20 bg-accent/5 px-2 py-0.5">
+                    FOCUS
                   </span>
-                  <h3 className="font-semibold text-ink text-base">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                  {item.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {item.tags.map((tag, i) => (
-                    <span key={i} className="px-2.5 py-1 font-mono text-[10px] text-ink-dim bg-[#111118] border border-surface-border">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                )}
               </div>
-            </div>
+              <p className="text-sm text-ink-muted leading-relaxed">
+                {item.description}
+              </p>
+            </article>
           ))}
         </div>
       </div>

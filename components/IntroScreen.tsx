@@ -8,7 +8,7 @@ const bootLines = [
   { text: "> Deploying to Vercel...", delay: 1400 },
   { text: "  System ready.", delay: 2000 },
   { text: "", delay: 2500 },
-  { text: "  Welcome, I'm Musthak M.", delay: 2800 },
+  { text: "  Welcome, I'm Musthak.", delay: 2800 },
 ];
 
 const EXIT_AT = 3800;

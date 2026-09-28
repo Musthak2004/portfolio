@@ -4,12 +4,15 @@ import { useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Pricing from "@/components/Pricing";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import About from "@/components/About";
+import ProofStats from "@/components/ProofStats";
+import WhatIBuild from "@/components/WhatIBuild";
+import FeaturedClient from "@/components/FeaturedClient";
+import Products from "@/components/Products";
+import Automation from "@/components/Automation";
 import Portfolio from "@/components/Portfolio";
+import Services from "@/components/Services";
+import About from "@/components/About";
+import CurrentlyBuilding from "@/components/CurrentlyBuilding";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import IntroScreen from "@/components/IntroScreen";
@@ -51,14 +54,17 @@ export default function PortfolioContent() {
         }`}
       >
         <Navbar />
-        <main>
+        <main id="main">
           <Hero />
-          <Services />
-          <Pricing />
-          <Skills />
-          <Experience />
-          <About />
+          <ProofStats />
+          <WhatIBuild />
+          <FeaturedClient />
+          <Products />
+          <Automation />
           <Portfolio />
+          <Services />
+          <About />
+          <CurrentlyBuilding />
           <Contact />
         </main>
         <Footer />
