@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Analytics from "@/components/Analytics";
+import SiteNavbar from "@/components/layout/SiteNavbar";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
   "https://msbee.dpdns.org";
 
-const title = "Musthak — Founder & Builder at MS Bee";
+const title = "MS Bee — Software + AI Systems";
 const description =
-  "Musthak is the founder of MS Bee, building software, AI automations, micro-SaaS products and digital tools.";
+  "MS Bee builds software, AI automation systems, custom digital solutions, micro-SaaS products, and digital products. Founded by Ruwaisdeen Muhammad Musthak.";
 
 export const metadata: Metadata = {
   title,
@@ -97,7 +99,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <SiteNavbar />
+        <main id="main">{children}</main>
+        <SiteFooter />
         <Analytics />
       </body>
     </html>
