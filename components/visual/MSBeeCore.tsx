@@ -30,10 +30,12 @@ export function CoreStatic({ className = "" }: { className?: string }) {
 export default function MSBeeCore({
   variant = "hero",
   className = "",
+  fallbackClassName,
   label = "MS Bee planetary system - cinematic orbital visual",
 }: {
   variant?: "hero" | "compact";
   className?: string;
+  fallbackClassName?: string;
   label?: string;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,7 @@ export default function MSBeeCore({
     return () => io.disconnect();
   }, []);
 
-  if (noGL) return <CoreStatic className={className} />;
+  if (noGL) return <CoreStatic className={fallbackClassName ?? className} />;
 
   return (
     <div ref={wrapRef} className={className} role="img" aria-label={label}>

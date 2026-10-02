@@ -209,6 +209,8 @@ function Planet({
 function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolean }) {
   const { rock, earth, gas, ring, glow } = useTextures();
   const cam = useRef({ x: 0, y: 0 });
+  const system = useRef<THREE.Group>(null);
+  const foreground = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -216,21 +218,37 @@ function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolea
       cam.current.x += (state.pointer.x - cam.current.x) * 0.02;
       cam.current.y += (state.pointer.y - cam.current.y) * 0.02;
     }
+    // wide establishing shot; system rests right of the calm center
+    const aspect = state.size.width / Math.max(1, state.size.height);
+    const offX = aspect > 1.2 ? 1.7 : aspect > 0.8 ? 1.0 : 0.35;
+    if (system.current) system.current.position.set(offX, 0.1, -0.6);
+    if (foreground.current) {
+      foreground.current.rotation.y += 0.0009;
+      foreground.current.position.y = -0.55 + Math.sin(t * 0.1) * 0.06;
+    }
     // cinematic drift: slow push + pointer influence
     state.camera.position.x = cam.current.x * 0.55 + Math.sin(t * 0.06) * 0.12;
-    state.camera.position.y = 1.15 + cam.current.y * 0.35 + Math.cos(t * 0.045) * 0.08;
-    state.camera.lookAt(0, 0.1, 0);
+    state.camera.position.y = 1.0 + cam.current.y * 0.35 + Math.cos(t * 0.045) * 0.08;
+    state.camera.lookAt(offX * 0.35, 0.15, 0);
   });
 
   return (
     <>
       <ambientLight intensity={0.22} />
-      {/* star light */}
-      <pointLight position={[0, 0.2, 0]} intensity={30} distance={20} decay={2} color="#ffe9c9" />
+      {/* star light lives inside the offset system group */}
       {/* cool key + warm rim */}
       <directionalLight position={[5, 3, 4]} intensity={0.7} color="#b9c4ff" />
       <directionalLight position={[-5, -1, -3]} intensity={0.35} color="#E8B34B" />
 
+      {/* foreground body entering the left frame */}
+      <mesh ref={foreground} position={[-3.6, -0.55, 1.4]}>
+        <sphereGeometry args={[0.62, 32, 32]} />
+        <meshStandardMaterial map={rock} bumpMap={rock} bumpScale={0.02} roughness={0.92} metalness={0.08} />
+      </mesh>
+
+      <group ref={system}>
+      {/* star light follows the core */}
+      <pointLight position={[0, 0.2, 0]} intensity={30} distance={20} decay={2} color="#ffe9c9" />
       {/* central star-core */}
       <mesh>
         <sphereGeometry args={[0.55, 40, 40]} />
@@ -262,6 +280,7 @@ function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolea
       <Planet texture={rock} glow={glow} radius={0.12} orbitR={3.1} orbitY={-0.7} speed={0.02} phase={4.4} atmo="#555566" selfSpin={0.02} tilt={[0.12, 0, 0.1]} path bump={0.01} />
 
       <Belt />
+      </group>
     </>
   );
 }
@@ -271,7 +290,7 @@ export default function CoreCanvas({ hero }: { hero: boolean }) {
   return (
     <Canvas
       dpr={[1, 1.5]}
-      camera={{ position: [0, 1.15, hero ? 5.4 : 6.2], fov: 40 }}
+      camera={{ position: [0, 1.0, hero ? 7.4 : 6.2], fov: 42 }}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       frameloop={reduced ? "never" : "always"}
     >
