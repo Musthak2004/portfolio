@@ -53,9 +53,9 @@ export default function SiteNavbar() {
                 <Link
                   href={link.href}
                   aria-current={pathname === link.href || pathname.startsWith(link.href + "/") ? "page" : undefined}
-                  className={`text-sm transition-colors duration-200 ${
+                  className={`relative text-sm transition-colors duration-fast py-1 ${
                     pathname === link.href || pathname.startsWith(link.href + "/")
-                      ? "text-ink"
+                      ? "text-ink after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:bg-accent"
                       : "text-ink-muted hover:text-ink"
                   }`}
                 >

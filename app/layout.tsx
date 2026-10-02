@@ -3,6 +3,7 @@ import "./globals.css";
 import Analytics from "@/components/Analytics";
 import SiteNavbar from "@/components/layout/SiteNavbar";
 import SiteFooter from "@/components/layout/SiteFooter";
+import AmbientBackground from "@/components/visual/AmbientBackground";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -99,9 +100,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteNavbar />
-        <main id="main">{children}</main>
-        <SiteFooter />
+        <AmbientBackground />
+        <div className="relative z-10">
+          <SiteNavbar />
+          <main id="main">{children}</main>
+          <SiteFooter />
+        </div>
         <Analytics />
       </body>
     </html>

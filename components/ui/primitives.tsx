@@ -119,7 +119,7 @@ export function CTASection({
             <h2 className="text-2xl md:text-4xl font-bold text-ink mb-4 text-balance">{title}</h2>
             <p className="text-ink-muted mb-8 max-w-xl mx-auto">{desc}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href={primary.href} className="btn-primary w-full sm:w-auto justify-center min-h-[48px]">
+              <Link href={primary.href} className="btn-primary btn-sweep w-full sm:w-auto justify-center min-h-[48px]">
                 {primary.label} →
               </Link>
               <Link href={secondary.href} className="btn-outline w-full sm:w-auto justify-center min-h-[48px]">
