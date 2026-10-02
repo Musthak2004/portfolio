@@ -13,7 +13,7 @@ const rows = [
 /** Live build-status dashboard — factual statuses only. */
 export function BuildStatus() {
   return (
-    <section aria-labelledby="home-now-heading" className="py-20 md:py-28">
+    <section aria-labelledby="home-now-heading" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <Reveal>
           <div className="mb-10">
@@ -57,7 +57,7 @@ export function BuildStatus() {
 /** Insights preview — reuses ArticleCard system. */
 export function InsightsPreview({ articles }: { articles: Article[] }) {
   return (
-    <section aria-labelledby="home-insights-heading" className="py-20 md:py-28 bg-[#08080F]">
+    <section aria-labelledby="home-insights-heading" className="py-16 md:py-20 bg-[#08080F]">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">

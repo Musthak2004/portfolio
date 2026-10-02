@@ -36,7 +36,7 @@ export default function SiteNavbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav aria-label="Primary navigation" className="max-w-6xl mx-auto px-5 sm:px-8">
+      <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between h-16">
           <Link
             href="/"

@@ -25,7 +25,7 @@ const columns = [
 export default function SiteFooter() {
   return (
     <footer className="border-t border-surface-border bg-[#06060C]">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-14 pb-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-14 pb-8">
         {/* brand moment */}
         <div className="flex flex-col items-center text-center mb-12">
           <CoreStatic className="w-28 h-28 mb-6" />

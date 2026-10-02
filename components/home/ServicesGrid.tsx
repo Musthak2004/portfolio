@@ -11,7 +11,7 @@ const groups = [
 /** Commercial capabilities — structured, no duplication of the node system. */
 export default function ServicesGrid() {
   return (
-    <section aria-labelledby="home-services-heading" className="py-20 md:py-28">
+    <section aria-labelledby="home-services-heading" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <Reveal>
           <div className="mb-12">

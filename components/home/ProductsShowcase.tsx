@@ -51,7 +51,7 @@ function ProductPreview({ product, flip }: { product: Product; flip?: boolean })
 /** Products as real products - perspective UI previews, independent from client work. */
 export default function ProductsShowcase({ products }: { products: Product[] }) {
   return (
-    <section aria-labelledby="home-products-heading" className="py-20 md:py-28">
+    <section aria-labelledby="home-products-heading" className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <Reveal>
           <div className="mb-12 md:mb-16 max-w-2xl">

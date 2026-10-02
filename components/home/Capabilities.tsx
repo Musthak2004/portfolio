@@ -33,7 +33,7 @@ export default function Capabilities() {
   const [active, setActive] = useState("ai");
 
   return (
-    <section aria-labelledby="caps-heading" className="py-20 md:py-28">
+    <section aria-labelledby="caps-heading" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">

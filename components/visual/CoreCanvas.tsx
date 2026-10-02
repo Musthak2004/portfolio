@@ -157,6 +157,9 @@ function Planet({
   phase,
   atmo,
   selfSpin = 0.05,
+  tilt = [0.06, 0, 0.03],
+  path = false,
+  bump = 0,
 }: {
   texture: THREE.Texture;
   glow: THREE.Texture;
@@ -167,6 +170,9 @@ function Planet({
   phase: number;
   atmo: string;
   selfSpin?: number;
+  tilt?: [number, number, number];
+  path?: boolean;
+  bump?: number;
 }) {
   const orbit = useRef<THREE.Group>(null);
   const mesh = useRef<THREE.Mesh>(null);
@@ -176,17 +182,25 @@ function Planet({
     if (mesh.current) mesh.current.rotation.y += 0.0016 + selfSpin * 0.004;
   });
   return (
-    <group ref={orbit} rotation={[0.06, 0, 0.03]}>
-      <group position={[orbitR, orbitY, 0]}>
-        <mesh ref={mesh}>
-          <sphereGeometry args={[radius, 40, 40]} />
-          <meshStandardMaterial map={texture} roughness={0.85} metalness={0.12} />
+    <group rotation={tilt}>
+      {path && (
+        <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, orbitY, 0]}>
+          <torusGeometry args={[orbitR, 0.004, 6, 128]} />
+          <meshBasicMaterial color="#9393FF" transparent opacity={0.14} depthWrite={false} />
         </mesh>
-        {/* atmospheric limb */}
-        <mesh scale={radius * 1.14}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshBasicMaterial map={glow} color={atmo} transparent opacity={0.5} blending={THREE.AdditiveBlending} depthWrite={false} side={THREE.BackSide} />
-        </mesh>
+      )}
+      <group ref={orbit}>
+        <group position={[orbitR, orbitY, 0]}>
+          <mesh ref={mesh}>
+            <sphereGeometry args={[radius, 40, 40]} />
+            <meshStandardMaterial map={texture} bumpMap={bump ? texture : undefined} bumpScale={bump} roughness={0.85} metalness={0.12} />
+          </mesh>
+          {/* atmospheric limb */}
+          <mesh scale={radius * 1.14}>
+            <sphereGeometry args={[1, 32, 32]} />
+            <meshBasicMaterial map={glow} color={atmo} transparent opacity={0.5} blending={THREE.AdditiveBlending} depthWrite={false} side={THREE.BackSide} />
+          </mesh>
+        </group>
       </group>
     </group>
   );
@@ -230,9 +244,9 @@ function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolea
       </sprite>
 
       {/* foreground: cratered rocky planet */}
-      <Planet texture={rock} glow={glow} radius={0.42} orbitR={1.55} orbitY={-0.35} speed={0.05} phase={0.8} atmo="#8a7f99" />
+      <Planet texture={rock} glow={glow} radius={0.42} orbitR={1.55} orbitY={-0.35} speed={0.05} phase={0.8} atmo="#8a7f99" tilt={[0.1, 0, 0.06]} path bump={0.015} />
       {/* midground: earth-like */}
-      <Planet texture={earth} glow={glow} radius={0.3} orbitR={2.35} orbitY={0.45} speed={-0.032} phase={2.6} atmo="#6aa8ff" selfSpin={0.08} />
+      <Planet texture={earth} glow={glow} radius={0.3} orbitR={2.35} orbitY={0.45} speed={-0.032} phase={2.6} atmo="#6aa8ff" selfSpin={0.08} tilt={[0.03, 0, -0.08]} path />
       {/* background: ringed gas giant, near-stationary */}
       <group>
         <mesh position={[-2.6, 1.1, -2.2]}>
@@ -245,7 +259,7 @@ function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolea
         </mesh>
       </group>
       {/* far small moon */}
-      <Planet texture={rock} glow={glow} radius={0.12} orbitR={3.1} orbitY={-0.7} speed={0.02} phase={4.4} atmo="#555566" selfSpin={0.02} />
+      <Planet texture={rock} glow={glow} radius={0.12} orbitR={3.1} orbitY={-0.7} speed={0.02} phase={4.4} atmo="#555566" selfSpin={0.02} tilt={[0.12, 0, 0.1]} path bump={0.01} />
 
       <Belt />
     </>
