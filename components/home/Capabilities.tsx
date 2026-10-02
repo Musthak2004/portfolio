@@ -74,7 +74,7 @@ export default function Capabilities() {
                       <span className="cap-bar block h-px bg-accent/60 mb-3" aria-hidden="true" />
                       <span className="font-mono text-xs tracking-[0.15em] text-accent">{b.node}</span>
                       <span className="block text-sm text-ink-muted mt-2 leading-relaxed">{b.desc}</span>
-                      <span className={`mt-3 block space-y-1.5 ${active === b.id ? "" : "sm:hidden"}`}>
+                      <span className={"mt-3 block space-y-1.5 " + (active === b.id ? "" : "sm:hidden")}>
                         {b.capabilities.map((c) => (
                           <span key={c} className="block text-[13px] text-ink">
                             <span className="text-accent mr-1.5" aria-hidden="true">▹</span>{c}
@@ -91,6 +91,13 @@ export default function Capabilities() {
                     </button>
                   ))}
                 </div>
+                {/* automation cross-system layer */}
+                <Link href="/solutions/ai-automation" className="group mt-3 flex items-center gap-3 border border-signal/25 bg-signal-dim px-4 md:px-5 py-3.5 min-h-[44px]" aria-label="Automation - the layer running through all three tracks">
+                  <span className="font-mono text-xs tracking-widest text-signal shrink-0">AUTOMATION</span>
+                  <span className="hidden sm:block h-px flex-1 bg-gradient-to-r from-signal/40 to-transparent" aria-hidden="true" />
+                  <span className="text-sm text-ink-muted">The layer running through all three tracks</span>
+                  <span className="ml-auto text-signal link-drift inline-flex items-center gap-1.5 text-sm font-medium" aria-hidden="true">→</span>
+                </Link>
               </div>
             </Reveal>
           </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import MSBeeCore from "@/components/visual/MSBeeCore";
 import SystemHUD from "@/components/visual/SystemHUD";
 
-const orbitLabels = ["AI", "SOFTWARE", "AUTOMATION", "PRODUCTS"];
+const orbitLabels = ["SOFTWARE", "AI", "PRODUCTS"];
 
 /** Asymmetric hero — text left, MS Bee Core right with orbiting labels + HUD. */
 export default function Hero() {
@@ -54,15 +54,21 @@ export default function Hero() {
                   key={label}
                   aria-hidden="true"
                   className={`hero-enter hero-enter-4 absolute font-mono text-[10px] tracking-[0.2em] text-ink-dim border border-surface-border bg-surface-light/80 px-2.5 py-1 backdrop-blur-sm ${
-                    i === 0 ? "-top-1 left-[12%]" : i === 1 ? "top-[30%] -right-2" : i === 2 ? "bottom-[18%] -left-2" : "bottom-0 right-[14%]"
+                    i === 0 ? "-top-1 left-[12%]" : i === 1 ? "top-[30%] -right-2" : "bottom-[18%] -left-2"
                   }`}
                 >
                   <span className="text-accent">●</span> {label}
                 </span>
               ))}
+              <span
+                aria-hidden="true"
+                className="hero-enter hero-enter-4 absolute bottom-0 right-[14%] font-mono text-[10px] tracking-[0.2em] text-signal/80 border border-signal/25 bg-black/40 px-2.5 py-1 backdrop-blur-sm"
+              >
+                AUTOMATION LAYER
+              </span>
             </div>
             <p className="font-mono text-[10px] text-ink-dim text-center mt-2" aria-hidden="true">
-              // MSBEE SYSTEM · ONLINE
+              MS BEE SYSTEM · ONLINE
             </p>
           </div>
         </div>

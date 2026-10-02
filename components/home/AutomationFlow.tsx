@@ -5,8 +5,7 @@ import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 
 const steps = [
-  { id: "lead", label: "LEAD", detail: "New enquiry arrives" },
-  { id: "data", label: "DATA", detail: "Details enter system" },
+  { id: "lead", label: "LEAD", detail: "Lead message arrives" },
   { id: "ai", label: "AI ENGINE", detail: "Response generated" },
   { id: "email", label: "EMAIL", detail: "Follow-up sent" },
   { id: "sms", label: "SMS", detail: "Second touch" },
@@ -97,7 +96,7 @@ export default function AutomationFlow() {
                       return <circle key={s.id} cx={x} cy={60} r={active > i ? 5 : 3.5} fill={active > i ? "#7C7CFF" : "#282833"} style={{ transition: "all 350ms ease-out" }} />;
                     })}
                   </svg>
-                  <ol className="grid grid-cols-5 gap-2">
+                  <ol className="grid gap-2" style={{ gridTemplateColumns: "repeat(" + steps.length + ", minmax(0, 1fr))" }}>
                     {steps.map((s, i) => (
                       <li key={s.id} className={`flow-node border px-3 py-4 text-center ${active > i ? "is-live bg-surface-light" : "border-surface-border bg-surface-light/40"}`}>
                         <span className={`font-mono text-[11px] tracking-wider ${active > i ? "text-ink" : "text-ink-dim"}`}>{s.label}</span>

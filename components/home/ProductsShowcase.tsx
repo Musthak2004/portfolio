@@ -42,7 +42,7 @@ function ProductPreview({ product, flip }: { product: Product; flip?: boolean })
         </div>
       </div>
       <p className="font-mono text-xs text-ink-dim mt-3 text-center" aria-hidden="true">
-        // live product preview - stylised mockup {flip ? "[02]" : "[01]"}
+        // live product preview {flip ? "[02]" : "[01]"}
       </p>
     </div>
   );
