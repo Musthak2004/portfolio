@@ -62,7 +62,7 @@ export default function Hero() {
               ))}
             </div>
             <p className="font-mono text-[10px] text-ink-dim text-center mt-2" aria-hidden="true">
-              // MSBEE-CORE · ONLINE
+              // MSBEE SYSTEM · ONLINE
             </p>
           </div>
         </div>

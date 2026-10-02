@@ -21,8 +21,9 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-5 gap-12">
             <div className="md:col-span-2">
               <div className="md:sticky md:top-24">
-                <div className="aspect-square max-w-xs border border-surface-border overflow-hidden bg-surface-light">
+                <div className="aspect-square max-w-xs border border-surface-border overflow-hidden bg-surface-light relative">
                   <img src="/assets/photo.jpg" alt="Portrait of R.M. Musthak, founder of MS Bee" className="w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ background: "linear-gradient(135deg, rgba(200,205,255,0.10) 0%, transparent 40%), linear-gradient(250deg, rgba(232,179,75,0.10) 0%, transparent 35%), linear-gradient(180deg, transparent 55%, rgba(4,4,8,0.55) 100%)" }} />
                 </div>
                 <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-dim mt-3">Musthak — founder & builder</p>
               </div>

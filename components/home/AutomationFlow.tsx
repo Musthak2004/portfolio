@@ -6,6 +6,7 @@ import Reveal from "@/components/motion/Reveal";
 
 const steps = [
   { id: "lead", label: "LEAD", detail: "New enquiry arrives" },
+  { id: "data", label: "DATA", detail: "Details enter system" },
   { id: "ai", label: "AI ENGINE", detail: "Response generated" },
   { id: "email", label: "EMAIL", detail: "Follow-up sent" },
   { id: "sms", label: "SMS", detail: "Second touch" },
@@ -89,13 +90,14 @@ export default function AutomationFlow() {
                 {/* desktop: horizontal flow with SVG path */}
                 <div className="hidden md:block">
                   <svg viewBox="0 0 560 120" className="w-full mb-2" aria-hidden="true">
-                    <line x1="70" y1="60" x2="490" y2="60" stroke="#282833" strokeWidth="1.5" />
-                    {!reduced && <line x1="70" y1="60" x2="490" y2="60" stroke="#7C7CFF" strokeWidth="1.5" className="flow-path" />}
-                    {[70, 210, 350, 490].map((x, i) => (
-                      <circle key={x} cx={x} cy={60} r={active > i ? 5 : 3.5} fill={active > i ? "#7C7CFF" : "#282833"} style={{ transition: "all 350ms ease-out" }} />
-                    ))}
+                    <line x1="56" y1="60" x2="504" y2="60" stroke="#282833" strokeWidth="1.5" />
+                    {!reduced && <line x1="56" y1="60" x2="504" y2="60" stroke="#7C7CFF" strokeWidth="1.5" className="flow-path" />}
+                    {steps.map((s, i) => {
+                      const x = 56 + i * (448 / (steps.length - 1));
+                      return <circle key={s.id} cx={x} cy={60} r={active > i ? 5 : 3.5} fill={active > i ? "#7C7CFF" : "#282833"} style={{ transition: "all 350ms ease-out" }} />;
+                    })}
                   </svg>
-                  <ol className="grid grid-cols-4 gap-2">
+                  <ol className="grid grid-cols-5 gap-2">
                     {steps.map((s, i) => (
                       <li key={s.id} className={`flow-node border px-3 py-4 text-center ${active > i ? "is-live bg-surface-light" : "border-surface-border bg-surface-light/40"}`}>
                         <span className={`font-mono text-[11px] tracking-wider ${active > i ? "text-ink" : "text-ink-dim"}`}>{s.label}</span>

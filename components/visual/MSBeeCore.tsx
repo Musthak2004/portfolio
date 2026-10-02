@@ -30,7 +30,7 @@ export function CoreStatic({ className = "" }: { className?: string }) {
 export default function MSBeeCore({
   variant = "hero",
   className = "",
-  label = "MS Bee Core — abstract hexagonal system object",
+  label = "MS Bee planetary system - cinematic orbital visual",
 }: {
   variant?: "hero" | "compact";
   className?: string;
