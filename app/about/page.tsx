@@ -1,16 +1,32 @@
 import Link from "next/link";
 import { Container, PageHero, CTASection } from "@/components/ui/primitives";
-import { pageMeta } from "@/lib/site";
+import JsonLd from "@/components/ui/JsonLd";
+import { breadcrumbNode, graph, profilePageNode, webPageNode } from "@/lib/schema";
+import { pageMeta, siteCanonical } from "@/lib/site";
 
 export const metadata = pageMeta({
-  title: "About — MS Bee",
-  description: "MS Bee is a founder-led software + AI company built by Ruwaisdeen Muhammad Musthak — client solutions, products, experiments and content.",
+  title: "About",
+  description:
+    "MS Bee is a founder-led software + AI company built by Ruwaisdeen Muhammad Musthak — client solutions, products, experiments and content.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={graph([
+          webPageNode({
+            name: "About MS Bee",
+            description:
+              "MS Bee is a founder-led software + AI company built by Ruwaisdeen Muhammad Musthak.",
+            path: "/about",
+            breadcrumbId: `${siteCanonical("/about")}#breadcrumb`,
+          }),
+          breadcrumbNode({ items: [{ label: "Home", href: "/" }, { label: "About" }], path: "/about" }),
+          profilePageNode(),
+        ])}
+      />
       <PageHero
         eyebrow="ms-bee about"
         title="About MS Bee"
@@ -22,7 +38,15 @@ export default function AboutPage() {
             <div className="md:col-span-2">
               <div className="md:sticky md:top-24">
                 <div className="aspect-square max-w-xs border border-surface-border overflow-hidden bg-surface-light relative">
-                  <img src="/assets/photo.jpg" alt="Portrait of R.M. Musthak, founder of MS Bee" className="w-full h-full object-cover" loading="lazy" />
+                  <img
+                    src="/images/founder/musthak.webp"
+                    alt="Portrait of Ruwaisdeen Muhammad Musthak, founder of MS Bee"
+                    width={896}
+                    height={1195}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-[50%_22%]"
+                  />
                   <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ background: "linear-gradient(135deg, rgba(200,205,255,0.10) 0%, transparent 40%), linear-gradient(250deg, rgba(232,179,75,0.10) 0%, transparent 35%), linear-gradient(180deg, transparent 55%, rgba(4,4,8,0.55) 100%)" }} />
                 </div>
                 <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-dim mt-3">Musthak — founder & builder</p>

@@ -7,7 +7,7 @@ const rows = [
   { name: "MS Bee", desc: "Software + AI", status: "BUILDING", tone: "text-signal border-signal/25 bg-signal-dim", href: "/labs/ms-bee-os" },
   { name: "CleanSched", desc: "Micro-SaaS", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/products/cleansched" },
   { name: "DevShield", desc: "Digital Product", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/products/devshield" },
-  { name: "AI Lead Follow-Up", desc: "Automation", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/work/ai-lead-follow-up-system" },
+  { name: "AI Lead Follow-Up", desc: "Automation", status: "LIVE DEMO", tone: "text-accent border-accent/25 bg-accent/5", href: "/work/ai-lead-follow-up-system" },
 ];
 
 /** Live build-status dashboard — factual statuses only. */

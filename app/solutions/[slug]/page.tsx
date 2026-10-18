@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container, Breadcrumbs, CTASection, FAQ } from "@/components/ui/primitives";
+import { Container, Breadcrumbs, CTASection, FAQ, StatusBadge } from "@/components/ui/primitives";
+import JsonLd from "@/components/ui/JsonLd";
+import Reveal from "@/components/motion/Reveal";
 import { ProjectCard } from "@/components/cards";
 import { solutions, getSolution } from "@/content/solutions";
 import { projects } from "@/content/work";
-import { pageMeta } from "@/lib/site";
+import { breadcrumbNode, faqNode, graph, serviceNode, webPageNode } from "@/lib/schema";
+import { pageMeta, siteCanonical } from "@/lib/site";
 
 export function generateStaticParams() {
   return solutions.map((s) => ({ slug: s.slug }));
@@ -13,19 +16,37 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const s = getSolution(params.slug);
   if (!s) return {};
-  return pageMeta({ title: `${s.title} — MS Bee`, description: s.tagline, path: `/solutions/${s.slug}` });
+  return pageMeta({
+    title: `${s.title} — service`,
+    description: s.tagline,
+    path: `/solutions/${s.slug}`,
+  });
 }
 
 export default function SolutionPage({ params }: { params: { slug: string } }) {
   const s = getSolution(params.slug);
   if (!s) notFound();
   const work = projects.filter((p) => s.relatedWork.includes(p.slug));
+  const crumbs = [{ label: "Solutions", href: "/solutions" }, { label: s.title }];
 
   return (
     <>
+      <JsonLd
+        data={graph([
+          webPageNode({
+            name: `${s.title} — MS Bee`,
+            description: s.description,
+            path: `/solutions/${s.slug}`,
+            breadcrumbId: `${siteCanonical(`/solutions/${s.slug}`)}#breadcrumb`,
+          }),
+          breadcrumbNode({ items: [{ label: "Home", href: "/" }, ...crumbs], path: `/solutions/${s.slug}` }),
+          serviceNode(s),
+          faqNode(s),
+        ])}
+      />
       <div className="pt-28 md:pt-36 pb-10">
         <Container>
-          <Breadcrumbs items={[{ label: "Solutions", href: "/solutions" }, { label: s.title }]} />
+          <Breadcrumbs items={crumbs} />
           <p className="font-mono text-xs text-ink-muted mb-4"><span className="text-accent">$</span> ms-bee solutions/{s.slug}</p>
           <h1 className="text-3xl md:text-5xl font-bold text-ink tracking-tight mb-4">{s.title}</h1>
           <p className="text-lg md:text-xl text-accent-hover max-w-2xl mb-4">{s.tagline}</p>

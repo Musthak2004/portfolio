@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container, Breadcrumbs, StatusBadge, CTASection } from "@/components/ui/primitives";
+import JsonLd from "@/components/ui/JsonLd";
 import { labs, getLab, getArticle } from "@/content/labs-insights";
 import { getProduct } from "@/content/products";
-import { pageMeta } from "@/lib/site";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
+import { pageMeta, siteCanonical } from "@/lib/site";
 
 export function generateStaticParams() {
   return labs.map((l) => ({ slug: l.slug }));
@@ -12,7 +14,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const l = getLab(params.slug);
   if (!l) return {};
-  return pageMeta({ title: `${l.title} — MS Bee Labs`, description: l.idea, path: `/labs/${l.slug}` });
+  return pageMeta({
+    title: `${l.title} — lab`,
+    description: l.idea,
+    path: `/labs/${l.slug}`,
+  });
 }
 
 export default function LabPage({ params }: { params: { slug: string } }) {
@@ -21,11 +27,24 @@ export default function LabPage({ params }: { params: { slug: string } }) {
   const product = l.relatedProduct ? getProduct(l.relatedProduct) : undefined;
   const article = l.relatedArticle ? getArticle(l.relatedArticle) : undefined;
 
+  const crumbs = [{ label: "Labs", href: "/labs" }, { label: l.title }];
+
   return (
     <>
+      <JsonLd
+        data={graph([
+          webPageNode({
+            name: `${l.title} — MS Bee Labs`,
+            description: l.idea,
+            path: `/labs/${l.slug}`,
+            breadcrumbId: `${siteCanonical(`/labs/${l.slug}`)}#breadcrumb`,
+          }),
+          breadcrumbNode({ items: [{ label: "Home", href: "/" }, ...crumbs], path: `/labs/${l.slug}` }),
+        ])}
+      />
       <div className="pt-28 md:pt-36 pb-10">
         <Container>
-          <Breadcrumbs items={[{ label: "Labs", href: "/labs" }, { label: l.title }]} />
+          <Breadcrumbs items={crumbs} />
           <div className="mb-4"><StatusBadge label={l.status} tone={l.status === "Live" ? "green" : l.status === "Archived" ? "dim" : "amber"} /></div>
           <h1 className="text-3xl md:text-5xl font-bold text-ink tracking-tight mb-4">{l.title}</h1>
           <p className="text-ink-muted max-w-2xl leading-relaxed">{l.idea}</p>

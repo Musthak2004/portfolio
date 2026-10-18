@@ -145,16 +145,141 @@
 
 /* ---------- MS Bee visual system ---------- */
 
+/* ---------- Motion tokens (keep in sync with components/motion/tokens.ts) ---------- */
+:root {
+  --ms-dur-fast: 180ms;
+  --ms-dur-standard: 320ms;
+  --ms-dur-reveal: 560ms;
+  --ms-dur-featured: 760ms;
+  --ms-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ms-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --ms-depth-perspective: 1100px;
+}
+
 /* Scroll reveal — single motion language */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 350ms ease-out, transform 350ms ease-out;
+  transition: opacity var(--ms-dur-reveal) var(--ms-ease-entrance),
+    transform var(--ms-dur-reveal) var(--ms-ease-entrance);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+.reveal-section {
+  transform: translateY(22px);
+}
+.reveal-featured {
+  transform: translateY(28px) scale(0.995);
+}
+.reveal-section.is-visible,
+.reveal-featured.is-visible {
+  transform: translateY(0) scale(1);
+}
+
+/* ---------- 3D depth system (TiltCard) ---------- */
+
+.tilt-wrap {
+  perspective: var(--ms-depth-perspective);
+  /* isolate so a tilted surface can never bleed over a neighbouring control */
+  position: relative;
+  isolation: isolate;
+}
+
+.tilt-surface {
+  --rx: 0deg;
+  --ry: 0deg;
+  --px: 0px;
+  --py: 0px;
+  --scale: 1;
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 0) scale(var(--scale));
+  transform-style: preserve-3d;
+  transition: transform var(--ms-dur-standard) var(--ms-ease);
+  backface-visibility: hidden;
+  height: 100%;
+}
+
+/* During pointer tracking the transform must follow the cursor without lag,
+   so the transition is dropped while actively tilted. */
+.tilt-surface[data-tilted="true"] {
+  transition-duration: var(--ms-dur-fast);
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.85);
+}
+
+.tilt-wrap:focus-within .tilt-surface {
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.85);
+}
+
+/* Keyboard parity: same end state as hover, without needing a pointer. */
+.tilt-wrap:focus-within .tilt-surface[data-tilted="true"] {
+  transition-duration: var(--ms-dur-fast);
+}
+
+/* Inner parallax layer — media only, never text. */
+.tilt-layer {
+  --tilt-strength: 1;
+  transform: translate3d(
+    calc(var(--px, 0px) * var(--tilt-strength) * -1),
+    calc(var(--py, 0px) * var(--tilt-strength) * -1),
+    0
+  );
+  transition: transform var(--ms-dur-standard) var(--ms-ease);
+  will-change: transform;
+}
+
+/* Cards keep flat, stable layout anywhere motion is unwanted. */
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .tilt-wrap {
+    perspective: none;
+  }
+  .tilt-surface,
+  .tilt-layer {
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none;
+  }
+}
+
+/* Case-study / project media frame — shared depth presentation */
+.depth-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #282833;
+  background: #0b0b13;
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.9);
+}
+.depth-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.depth-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 6, 12, 0) 55%, rgba(6, 6, 12, 0.55) 100%);
+}
+
+/* Browser chrome used on genuine screenshots — no fake UI, just framing. */
+.shot-frame {
+  border: 1px solid #282833;
+  background: #0f0f17;
+}
+.shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #282833;
+}
+.shot-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #33333f;
 }
 
 /* Hero entrance — fast, staged, content-first */
@@ -265,15 +390,9 @@
   transform: translateX(4px);
 }
 
-/* Work preview zoom */
+/* Work preview frame — clipping only; motion is owned by TiltCard */
 .work-visual {
   overflow: hidden;
-}
-.work-visual > * {
-  transition: transform 700ms ease-out;
-}
-.work-visual:hover > * {
-  transform: scale(1.03);
 }
 
 

@@ -23,13 +23,34 @@ export type LeadStatus =
   | "WON"
   | "LOST";
 
+/** Honest project classification — never present a concept as a real client. */
+export type ProjectType = "client" | "demo" | "internal";
+
+/** A single verified screenshot of the shipped project. */
+export interface ProjectShot {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+  /** wider layout slot in the case-study gallery */
+  span?: "full" | "half";
+}
+
+/** Optional long-form case-study section — used by flagship client work. */
+export interface CaseStudySection {
+  heading: string;
+  body: string;
+  bullets?: string[];
+}
+
 export interface Project {
   id: string;
   slug: string;
   title: string;
   category: WorkCategory[];
   industry: string;
-  type: "client" | "demo" | "internal";
+  type: ProjectType;
   status: PublishStatus;
   description: string;
   problem: string;
@@ -40,7 +61,14 @@ export interface Project {
   liveUrl?: string;
   demoUrl?: string;
   featured?: boolean;
+  /** ordering of the homepage featured slots — lower renders first */
+  featuredRank?: number;
+  /** extra long-form sections rendered after section 05 */
+  caseStudy?: CaseStudySection[];
+  /** verified screenshots for the visual gallery */
+  gallery?: ProjectShot[];
   publishedAt: string;
+  updatedAt?: string;
   relatedSolution?: string;
 }
 

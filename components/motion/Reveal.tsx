@@ -1,26 +1,43 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode, type ElementType } from "react";
+import { motion } from "./tokens";
 
 type RevealProps = {
   children: ReactNode;
   as?: ElementType;
   className?: string;
-  /** stagger index — adds 70ms delay per step */
+  /** stagger index — adds motion.staggerMs delay per step */
   delay?: number;
   id?: string;
+  /** entrance weight: grouped cards stay light, section headers rise further */
+  variant?: "standard" | "section" | "featured";
+};
+
+const variantClass: Record<NonNullable<RevealProps["variant"]>, string> = {
+  standard: "reveal",
+  section: "reveal reveal-section",
+  featured: "reveal reveal-featured",
 };
 
 /**
- * Consistent scroll-reveal: opacity 0→1, translateY 16px→0, standard timing.
- * Renders visible immediately when reduced-motion is preferred or IO unavailable.
+ * Consistent scroll-reveal: opacity 0→1 plus a small rise, standard timing.
+ * Renders visible immediately when reduced-motion is preferred or IO is
+ * unavailable, so content is never hidden behind a missing effect.
  */
-export default function Reveal({ children, as: Tag = "div", className = "", delay = 0, id }: RevealProps) {
+export default function Reveal({
+  children,
+  as: Tag = "div",
+  className = "",
+  delay = 0,
+  id,
+  variant = "standard",
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia(motion.queries.reduced).matches) {
       setShown(true);
       return;
     }
@@ -47,8 +64,8 @@ export default function Reveal({ children, as: Tag = "div", className = "", dela
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       id={id}
-      className={`reveal${shown ? " is-visible" : ""} ${className}`}
-      style={delay ? { transitionDelay: `${delay * 70}ms` } : undefined}
+      className={`${variantClass[variant]}${shown ? " is-visible" : ""} ${className}`}
+      style={delay ? { transitionDelay: `${delay * motion.staggerMs}ms` } : undefined}
     >
       {children}
     </Tag>

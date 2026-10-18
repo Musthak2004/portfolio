@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container, Breadcrumbs, CTASection } from "@/components/ui/primitives";
+import JsonLd from "@/components/ui/JsonLd";
 import { articles, getArticle } from "@/content/labs-insights";
 import { getSolution } from "@/content/solutions";
 import { getProject } from "@/content/work";
 import { getProduct } from "@/content/products";
-import { pageMeta } from "@/lib/site";
+import { articleNode, breadcrumbNode, graph, webPageNode } from "@/lib/schema";
+import { pageMeta, siteCanonical } from "@/lib/site";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -14,7 +16,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const a = getArticle(params.slug);
   if (!a) return {};
-  return pageMeta({ title: `${a.title} — MS Bee Insights`, description: a.excerpt, path: `/insights/${a.slug}` });
+  return pageMeta({
+    title: a.title,
+    description: a.excerpt,
+    path: `/insights/${a.slug}`,
+    type: "article",
+  });
 }
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
@@ -24,11 +31,25 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   const work = a.relatedWork ? getProject(a.relatedWork) : undefined;
   const product = a.relatedProduct ? getProduct(a.relatedProduct) : undefined;
 
+  const crumbs = [{ label: "Insights", href: "/insights" }, { label: a.title }];
+
   return (
     <>
+      <JsonLd
+        data={graph([
+          webPageNode({
+            name: a.title,
+            description: a.excerpt,
+            path: `/insights/${a.slug}`,
+            breadcrumbId: `${siteCanonical(`/insights/${a.slug}`)}#breadcrumb`,
+          }),
+          breadcrumbNode({ items: [{ label: "Home", href: "/" }, ...crumbs], path: `/insights/${a.slug}` }),
+          articleNode(a),
+        ])}
+      />
       <article className="pt-28 md:pt-36 pb-10">
         <Container>
-          <Breadcrumbs items={[{ label: "Insights", href: "/insights" }, { label: a.title }]} />
+          <Breadcrumbs items={crumbs} />
           <p className="font-mono text-xs text-accent mb-3">{a.category} · {a.readingMinutes} min read</p>
           <h1 className="text-3xl md:text-5xl font-bold text-ink tracking-tight mb-4 max-w-3xl text-balance">{a.title}</h1>
           <p className="text-ink-muted max-w-2xl leading-relaxed mb-4">{a.excerpt}</p>

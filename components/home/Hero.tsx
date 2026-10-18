@@ -97,16 +97,12 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* HUD in-flow on mobile/tablet */}
-          <div className="hero-enter hero-enter-4 lg:hidden max-w-sm mx-auto mt-10 text-left">
+          {/* System map — exactly one instance, repositioned by CSS at lg
+              (previously rendered twice, doubling observers and timers) */}
+          <div className="hero-enter hero-enter-4 relative mt-10 max-w-sm mx-auto text-left lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:mx-0 lg:max-w-none lg:w-72 lg:z-10">
             <SystemHUD />
           </div>
         </div>
-      </div>
-
-      {/* HUD docked lower-right on desktop */}
-      <div className="hero-enter hero-enter-4 hidden lg:block absolute bottom-10 right-10 z-10 w-72">
-        <SystemHUD />
       </div>
 
       {/* scroll cue */}

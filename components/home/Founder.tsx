@@ -11,7 +11,15 @@ export default function Founder() {
             <Reveal>
               <div className="relative max-w-xs">
                 <div className="border border-surface-border overflow-hidden bg-surface-light aspect-square relative">
-                  <img src="/assets/photo.jpg" alt="Portrait of R.M. Musthak, founder and builder of MS Bee" className="w-full h-full object-cover" loading="lazy" />
+                  <img
+                    src="/images/founder/musthak.webp"
+                    alt="Portrait of Ruwaisdeen Muhammad Musthak, founder and builder of MS Bee"
+                    width={896}
+                    height={1195}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-[50%_22%]"
+                  />
                   {/* editorial light: soft key from upper-left, warm rim from right */}
                   <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ background: "linear-gradient(135deg, rgba(200,205,255,0.10) 0%, transparent 40%), linear-gradient(250deg, rgba(232,179,75,0.10) 0%, transparent 35%), linear-gradient(180deg, transparent 55%, rgba(4,4,8,0.55) 100%)" }} />
                   <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.2em] text-white/70 border border-white/15 bg-black/40 px-2 py-1 backdrop-blur-sm" aria-hidden="true">MSBEE / FOUNDER-01</div>

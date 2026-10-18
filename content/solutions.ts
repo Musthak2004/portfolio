@@ -13,7 +13,7 @@ export const solutions: Solution[] = [
       "No clear path from visit to enquiry",
     ],
     outcomes: [
-      "A fast site that loads in under 2 seconds on typical connections",
+      "A performance budget set with the client — fast first paint and no blocked rendering is the target, not a guaranteed number",
       "Clear service presentation and enquiry flow",
       "A codebase the business can extend without a rewrite",
     ],
@@ -41,7 +41,7 @@ export const solutions: Solution[] = [
         a: "Next.js and TypeScript, deployed on modern hosting — fast, maintainable, and easy to extend.",
       },
     ],
-    relatedWork: ["orikma", "ember-and-oak", "flowspace-saas"],
+    relatedWork: ["zernons", "orikma", "ember-and-oak", "flowspace-saas"],
   },
   {
     slug: "mobile-app-development",

@@ -7,24 +7,27 @@ import ServicesGrid from "@/components/home/ServicesGrid";
 import Founder from "@/components/home/Founder";
 import { BuildStatus, InsightsPreview } from "@/components/home/StatusInsights";
 import { CTASection } from "@/components/ui/primitives";
-import { projects } from "@/content/work";
+import { getFeaturedProjects, getSupportingProjects } from "@/content/work";
 import { products } from "@/content/products";
 import { articles } from "@/content/labs-insights";
 import { pageMeta } from "@/lib/site";
 
 export const metadata = pageMeta({
-  title: "MS Bee — Software + AI Systems",
+  title: "Software + AI Systems",
   description:
     "MS Bee builds software, AI automation systems, custom digital solutions, micro-SaaS products, and digital products. Founder-led by Ruwaisdeen Muhammad Musthak.",
   path: "/",
 });
 
 export default function HomePage() {
+  const featured = getFeaturedProjects();
+  const supporting = getSupportingProjects();
+
   return (
     <>
       <Hero />
       <Capabilities />
-      <FeaturedWork projects={projects} />
+      <FeaturedWork featured={featured} supporting={supporting} />
       <ProductsShowcase products={products} />
       <AutomationFlow />
       <ServicesGrid />

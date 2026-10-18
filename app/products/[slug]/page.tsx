@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { Container, Breadcrumbs, StatusBadge, CTASection } from "@/components/ui/primitives";
+import JsonLd from "@/components/ui/JsonLd";
 import { products, getProduct } from "@/content/products";
-import { pageMeta } from "@/lib/site";
+import { breadcrumbNode, graph, productNode, webPageNode } from "@/lib/schema";
+import { pageMeta, siteCanonical } from "@/lib/site";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -10,18 +12,36 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const p = getProduct(params.slug);
   if (!p) return {};
-  return pageMeta({ title: `${p.name} — MS Bee Products`, description: p.description, path: `/products/${p.slug}` });
+  return pageMeta({
+    title: `${p.name} — product`,
+    description: p.description,
+    path: `/products/${p.slug}`,
+  });
 }
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const p = getProduct(params.slug);
   if (!p) notFound();
 
+  const crumbs = [{ label: "Products", href: "/products" }, { label: p.name }];
+
   return (
     <>
+      <JsonLd
+        data={graph([
+          webPageNode({
+            name: `${p.name} — MS Bee`,
+            description: p.description,
+            path: `/products/${p.slug}`,
+            breadcrumbId: `${siteCanonical(`/products/${p.slug}`)}#breadcrumb`,
+          }),
+          breadcrumbNode({ items: [{ label: "Home", href: "/" }, ...crumbs], path: `/products/${p.slug}` }),
+          productNode(p),
+        ])}
+      />
       <div className="pt-28 md:pt-36 pb-10">
         <Container>
-          <Breadcrumbs items={[{ label: "Products", href: "/products" }, { label: p.name }]} />
+          <Breadcrumbs items={crumbs} />
           <div className="flex flex-wrap gap-2 mb-4">
             <span className="font-mono text-[10px] tracking-[0.15em] text-accent border border-accent/20 bg-accent/5 px-2.5 py-1">{p.category.toUpperCase()}</span>
             <StatusBadge label={p.status} tone="green" />

@@ -1,36 +1,42 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Analytics from "@/components/Analytics";
+import JsonLd from "@/components/ui/JsonLd";
 import SiteNavbar from "@/components/layout/SiteNavbar";
 import SiteFooter from "@/components/layout/SiteFooter";
 import AmbientBackground from "@/components/visual/AmbientBackground";
+import { siteGraph } from "@/lib/schema";
+import { siteName, siteTagline, siteUrl } from "@/lib/site";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://msbee.dpdns.org";
-
-const title = "MS Bee — Software + AI Systems";
+const title = `${siteName} — ${siteTagline}`;
 const description =
-  "MS Bee builds software, AI automation systems, custom digital solutions, micro-SaaS products, and digital products. Founded by Ruwaisdeen Muhammad Musthak.";
+  "MS Bee builds software, AI automation systems, custom digital solutions, micro-SaaS products, and digital products. Founder-led by Ruwaisdeen Muhammad Musthak.";
 
 export const metadata: Metadata = {
-  title,
-  description,
   metadataBase: new URL(siteUrl),
-  alternates: { canonical: siteUrl },
+  title: {
+    default: title,
+    template: "%s | MS Bee",
+  },
+  description,
+  applicationName: siteName,
+  authors: [{ name: "Ruwaisdeen Muhammad Musthak", url: `${siteUrl}/about` }],
+  creator: "Ruwaisdeen Muhammad Musthak",
+  publisher: siteName,
+  alternates: { canonical: `${siteUrl}/` },
   openGraph: {
     title,
     description,
-    url: siteUrl,
+    url: `${siteUrl}/`,
     type: "website",
     locale: "en_US",
-    siteName: "MS Bee — R.M. Musthak",
+    siteName,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Musthak — Founder & Builder at MS Bee",
+        alt: "MS Bee — software, AI automations and digital products",
       },
     ],
   },
@@ -42,42 +48,13 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: { icon: "/favicon.svg" },
+  category: "technology",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#07070D",
-};
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      name: "R.M. Musthak",
-      jobTitle: "Founder & Builder",
-      worksFor: { "@type": "Organization", name: "MS Bee" },
-      url: siteUrl,
-      sameAs: [
-        "https://github.com/Musthak2004",
-        "https://linkedin.com/in/rm-musthak",
-      ],
-    },
-    {
-      "@type": "Organization",
-      name: "MS Bee",
-      url: siteUrl,
-      founder: { "@type": "Person", name: "R.M. Musthak" },
-      description:
-        "MS Bee is a software and AI company building web applications, AI automations, custom software and digital products.",
-    },
-    {
-      "@type": "WebSite",
-      name: title,
-      url: siteUrl,
-    },
-  ],
 };
 
 export default function RootLayout({
@@ -87,13 +64,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </head>
       <body>
+        <JsonLd data={siteGraph()} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:rounded"
