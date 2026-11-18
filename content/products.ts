@@ -25,6 +25,13 @@ export const products: Product[] = [
     url: "https://sparkleshine.de5.net/",
     changelog: [{ version: "v1", note: "Live — booking, scheduling and invoicing." }],
     featured: true,
+    image: {
+      src: "/images/products/cleansched/app-desktop.webp",
+      alt: "CleanSched landing page on desktop - booking and scheduling promise beside a live cleaning-business schedule preview with payment status.",
+      width: 1440,
+      height: 900,
+      caption: "Live product — scheduling and invoice visibility",
+    },
   },
   {
     slug: "devshield",
@@ -47,6 +54,13 @@ export const products: Product[] = [
     url: "https://musthakcool.gumroad.com/l/devshield-free",
     changelog: [{ version: "v1", note: "Free starter kit published." }],
     featured: true,
+    image: {
+      src: "/images/products/devshield/listing-desktop.webp",
+      alt: "DevShield Gumroad listing on desktop — navy hero reading “Stop Losing Money to Scope Creep” with the free starter-kit offer.",
+      width: 1440,
+      height: 900,
+      caption: "Live listing — the free DevShield starter kit",
+    },
   },
 ];
 

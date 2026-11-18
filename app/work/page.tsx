@@ -1,8 +1,7 @@
-import { Container, PageHero, CTASection } from "@/components/ui/primitives";
+import { CTASection, PageHero } from "@/components/ui/primitives";
 import JsonLd from "@/components/ui/JsonLd";
-import Reveal from "@/components/motion/Reveal";
-import { ProjectCard } from "@/components/cards";
-import { projects, getFeaturedProjects, getSupportingProjects } from "@/content/work";
+import WorkExplorer from "@/components/work/WorkExplorer";
+import { projects, getFeaturedProjects } from "@/content/work";
 import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { pageMeta, siteCanonical } from "@/lib/site";
 
@@ -14,8 +13,9 @@ export const metadata = pageMeta({
 });
 
 export default function WorkIndex() {
-  const cards = [...getFeaturedProjects(), ...getSupportingProjects()];
   const clientCount = projects.filter((p) => p.type === "client").length;
+  const conceptCount = projects.filter((p) => p.type === "demo").length;
+  const internalCount = projects.filter((p) => p.type === "internal").length;
 
   return (
     <>
@@ -23,8 +23,7 @@ export default function WorkIndex() {
         data={graph([
           webPageNode({
             name: "Work — MS Bee",
-            description:
-              "Client work, concept builds and internal systems built by MS Bee.",
+            description: "Client work, concept builds and internal systems built by MS Bee.",
             path: "/work",
             breadcrumbId: `${siteCanonical("/work")}#breadcrumb`,
           }),
@@ -32,21 +31,25 @@ export default function WorkIndex() {
         ])}
       />
       <PageHero
-        eyebrow="ms-bee work"
-        title="Work"
-        desc={`${clientCount} client builds and the concept and internal systems built alongside them. Every entry opens a full case study — problem, objective, solution, technology — with project type stated so nothing reads as more than it is.`}
+        eyebrow="Selected work"
+        index="01"
+        title="Proof, not promises."
+        desc={`${clientCount} client builds in production, plus ${conceptCount} self-initiated concepts and ${internalCount} internal system demonstrated in public. Every entry states what it is before what it looks like.`}
+        breadcrumbs={[{ label: "Work" }]}
+        meta={[
+          { label: "Client builds", value: `${clientCount} live` },
+          { label: "Concepts", value: `${conceptCount} public` },
+          { label: "Internal", value: `${internalCount} demonstrated` },
+          { label: "Featured", value: getFeaturedProjects(1)[0]?.title ?? "—" },
+        ]}
       />
-      <section className="pb-24">
-        <Container>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {cards.map((p, i) => (
-              <Reveal key={p.slug} delay={i % 3}>
-                <ProjectCard project={p} index={i} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
+
+      <section className="section">
+        <div className="shell">
+          <WorkExplorer projects={projects} />
+        </div>
       </section>
+
       <CTASection />
     </>
   );

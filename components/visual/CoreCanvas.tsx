@@ -206,7 +206,36 @@ function Planet({
   );
 }
 
-function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolean }) {
+function Stars({ count = 320 }: { count?: number }) {
+  const ref = useRef<THREE.Points>(null);
+  const positions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = 7 + Math.random() * 9;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      arr[i * 3 + 1] = r * Math.cos(phi) * 0.55;
+      arr[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta) - 2;
+    }
+    return arr;
+  }, [count]);
+
+  useFrame((state) => {
+    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.004;
+  });
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial size={0.028} color="#c9c9ff" transparent opacity={0.55} sizeAttenuation depthWrite={false} />
+    </points>
+  );
+}
+
+function Scene({ interactive, reduced, hero }: { interactive: boolean; reduced: boolean; hero: boolean }) {
   const { rock, earth, gas, ring, glow } = useTextures();
   const cam = useRef({ x: 0, y: 0 });
   const system = useRef<THREE.Group>(null);
@@ -215,71 +244,81 @@ function Scene({ interactive, reduced }: { interactive: boolean; reduced: boolea
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     if (interactive && !reduced) {
-      cam.current.x += (state.pointer.x - cam.current.x) * 0.02;
-      cam.current.y += (state.pointer.y - cam.current.y) * 0.02;
+      cam.current.x += (state.pointer.x - cam.current.x) * 0.018;
+      cam.current.y += (state.pointer.y - cam.current.y) * 0.018;
     }
-    // wide establishing shot; system rests right of the calm center
+
+    // The system is anchored to the lower-right edge so the centred headline
+    // and its supporting copy always keep a clear, dark safe zone.
     const aspect = state.size.width / Math.max(1, state.size.height);
-    const offX = aspect > 1.2 ? 1.7 : aspect > 0.8 ? 1.0 : 0.35;
-    if (system.current) system.current.position.set(offX, 0.1, -0.6);
+    const offX = hero ? Math.max(2.4, aspect * 2.55) : 1.2;
+    const offY = hero ? -1.55 : -0.25;
+    if (system.current) {
+      system.current.position.set(offX, offY, -1.1);
+      system.current.rotation.y = -0.18;
+    }
     if (foreground.current) {
       foreground.current.rotation.y += 0.0009;
-      foreground.current.position.y = -0.55 + Math.sin(t * 0.1) * 0.06;
+      foreground.current.position.y = -1.05 + Math.sin(t * 0.1) * 0.05;
     }
+
     // cinematic drift: slow push + pointer influence
-    state.camera.position.x = cam.current.x * 0.55 + Math.sin(t * 0.06) * 0.12;
-    state.camera.position.y = 1.0 + cam.current.y * 0.35 + Math.cos(t * 0.045) * 0.08;
-    state.camera.lookAt(offX * 0.35, 0.15, 0);
+    state.camera.position.x = cam.current.x * 0.5 + Math.sin(t * 0.06) * 0.1;
+    state.camera.position.y = 1.05 + cam.current.y * 0.3 + Math.cos(t * 0.045) * 0.06;
+    // Keep the framing near centre: the system stays out at the right edge.
+    state.camera.lookAt(hero ? 0.25 : offX * 0.42, offY * 0.35 + 0.1, 0);
   });
 
   return (
     <>
-      <ambientLight intensity={0.22} />
-      {/* star light lives inside the offset system group */}
-      {/* cool key + warm rim */}
-      <directionalLight position={[5, 3, 4]} intensity={0.7} color="#b9c4ff" />
-      <directionalLight position={[-5, -1, -3]} intensity={0.35} color="#E8B34B" />
+      <ambientLight intensity={0.1} />
+      {/* cool key light from upper-right, models the planets as spheres */}
+      <directionalLight position={[8, 6, 4]} intensity={1.0} color="#aebcff" />
+      {/* warm rim from lower-left, separates bodies from deep space */}
+      <directionalLight position={[-8, -4, -6]} intensity={0.6} color="#E8B34B" />
+      <hemisphereLight args={["#c9c9ff", "#08080e", 0.12]} />
+      <Stars count={450} />
 
-      {/* foreground body entering the left frame */}
-      <mesh ref={foreground} position={[-3.6, -0.55, 1.4]}>
-        <sphereGeometry args={[0.62, 32, 32]} />
-        <meshStandardMaterial map={rock} bumpMap={rock} bumpScale={0.02} roughness={0.92} metalness={0.08} />
+      {/* foreground body entering the lower-left frame, clear of the headline */}
+      <mesh ref={foreground} position={[-4.1, -1.1, 1.8]}>
+        <sphereGeometry args={[0.72, 32, 32]} />
+        <meshStandardMaterial map={rock} bumpMap={rock} bumpScale={0.02} roughness={0.94} metalness={0.06} />
       </mesh>
 
       <group ref={system}>
-      {/* star light follows the core */}
-      <pointLight position={[0, 0.2, 0]} intensity={30} distance={20} decay={2} color="#ffe9c9" />
-      {/* central star-core */}
-      <mesh>
-        <sphereGeometry args={[0.55, 40, 40]} />
-        <meshBasicMaterial map={glow} color="#fff3e0" />
-      </mesh>
-      <sprite scale={[3.4, 3.4, 1]}>
-        <spriteMaterial map={glow} color="#ffdfae" transparent opacity={0.55} blending={THREE.AdditiveBlending} depthWrite={false} />
-      </sprite>
-      <sprite scale={[6.2, 6.2, 1]}>
-        <spriteMaterial map={glow} color="#c9a86a" transparent opacity={0.16} blending={THREE.AdditiveBlending} depthWrite={false} />
-      </sprite>
-
-      {/* foreground: cratered rocky planet */}
-      <Planet texture={rock} glow={glow} radius={0.42} orbitR={1.55} orbitY={-0.35} speed={0.05} phase={0.8} atmo="#8a7f99" tilt={[0.1, 0, 0.06]} path bump={0.015} />
-      {/* midground: earth-like */}
-      <Planet texture={earth} glow={glow} radius={0.3} orbitR={2.35} orbitY={0.45} speed={-0.032} phase={2.6} atmo="#6aa8ff" selfSpin={0.08} tilt={[0.03, 0, -0.08]} path />
-      {/* background: ringed gas giant, near-stationary */}
-      <group>
-        <mesh position={[-2.6, 1.1, -2.2]}>
-          <sphereGeometry args={[0.85, 40, 40]} />
-          <meshStandardMaterial map={gas} roughness={0.7} metalness={0.1} />
+        {/* star light follows the core */}
+        <pointLight position={[0, 0.2, 0]} intensity={24} distance={18} decay={2} color="#ffe9c9" />
+        {/* central star-core */}
+        <mesh>
+          <sphereGeometry args={[0.55, 40, 40]} />
+          <meshBasicMaterial map={glow} color="#fff3e0" />
         </mesh>
-        <mesh position={[-2.6, 1.1, -2.2]} rotation={[Math.PI / 2.4, 0.2, 0]}>
-          <ringGeometry args={[1.05, 1.7, 96, 1]} />
-          <meshBasicMaterial map={ring} transparent opacity={0.85} side={THREE.DoubleSide} depthWrite={false} />
-        </mesh>
-      </group>
-      {/* far small moon */}
-      <Planet texture={rock} glow={glow} radius={0.12} orbitR={3.1} orbitY={-0.7} speed={0.02} phase={4.4} atmo="#555566" selfSpin={0.02} tilt={[0.12, 0, 0.1]} path bump={0.01} />
+        <sprite scale={[2.6, 2.6, 1]}>
+          <spriteMaterial map={glow} color="#ffdfae" transparent opacity={0.38} blending={THREE.AdditiveBlending} depthWrite={false} />
+        </sprite>
+        <sprite scale={[4.6, 4.6, 1]}>
+          <spriteMaterial map={glow} color="#c9a86a" transparent opacity={0.1} blending={THREE.AdditiveBlending} depthWrite={false} />
+        </sprite>
 
-      <Belt />
+        {/* foreground: cratered rocky planet */}
+        <Planet texture={rock} glow={glow} radius={0.5} orbitR={1.6} orbitY={-0.35} speed={0.05} phase={0.8} atmo="#8a7f99" tilt={[0.1, 0, 0.06]} path bump={0.015} />
+        {/* midground: earth-like */}
+        <Planet texture={earth} glow={glow} radius={0.36} orbitR={2.45} orbitY={0.45} speed={-0.032} phase={2.6} atmo="#6aa8ff" selfSpin={0.08} tilt={[0.03, 0, -0.08]} path />
+        {/* background: ringed gas giant, near-stationary */}
+        <group position={[0.35, 1.15, -2.2]}>
+          <mesh>
+            <sphereGeometry args={[0.85, 40, 40]} />
+            <meshStandardMaterial map={gas} roughness={0.7} metalness={0.1} />
+          </mesh>
+          <mesh rotation={[Math.PI / 2.4, 0.2, 0]}>
+            <ringGeometry args={[1.05, 1.7, 96, 1]} />
+            <meshBasicMaterial map={ring} transparent opacity={0.85} side={THREE.DoubleSide} depthWrite={false} />
+          </mesh>
+        </group>
+        {/* far small moon */}
+        <Planet texture={rock} glow={glow} radius={0.12} orbitR={3.1} orbitY={-0.7} speed={0.02} phase={4.4} atmo="#555566" selfSpin={0.02} tilt={[0.12, 0, 0.1]} path bump={0.01} />
+
+        <Belt />
       </group>
     </>
   );
@@ -289,12 +328,12 @@ export default function CoreCanvas({ hero }: { hero: boolean }) {
   const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   return (
     <Canvas
-      dpr={[1, 1.5]}
-      camera={{ position: [0, 1.0, hero ? 7.4 : 6.2], fov: 42 }}
+      dpr={[1, 1.6]}
+      camera={{ position: [0, 1.2, hero ? 9.2 : 7.2], fov: 40 }}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       frameloop={reduced ? "never" : "always"}
     >
-      <Scene interactive={hero} reduced={reduced} />
+      <Scene interactive={hero} reduced={reduced} hero={hero} />
     </Canvas>
   );
 }

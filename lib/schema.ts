@@ -188,6 +188,7 @@ export function productNode(product: Product) {
     description: product.description,
     url: siteCanonical(path),
     brand: { "@id": ORG_ID },
+    ...(product.image ? { image: `${siteUrl}${product.image.src}` } : {}),
     ...(product.status === "Live" ? { sameAs: [product.url] } : {}),
   };
   // Only software is described as software; a written toolkit is a product.

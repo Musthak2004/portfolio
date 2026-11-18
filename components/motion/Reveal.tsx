@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type ElementType } from "react";
+import { useEffect, useRef, useState, type ReactNode, type ElementType, type Ref } from "react";
 import { motion } from "./tokens";
 
 type RevealProps = {
@@ -61,8 +61,7 @@ export default function Reveal({
 
   return (
     <Tag
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
+      ref={ref as Ref<never>}
       id={id}
       className={`${variantClass[variant]}${shown ? " is-visible" : ""} ${className}`}
       style={delay ? { transitionDelay: `${delay * motion.staggerMs}ms` } : undefined}

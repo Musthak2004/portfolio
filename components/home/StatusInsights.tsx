@@ -6,73 +6,136 @@ import type { Article } from "@/types";
 const rows = [
   { name: "MS Bee", desc: "Software + AI", status: "BUILDING", tone: "text-signal border-signal/25 bg-signal-dim", href: "/labs/ms-bee-os" },
   { name: "CleanSched", desc: "Micro-SaaS", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/products/cleansched" },
-  { name: "DevShield", desc: "Digital Product", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/products/devshield" },
+  { name: "DevShield", desc: "Digital product", status: "LIVE", tone: "text-emerald-400 border-emerald-400/20 bg-emerald-400/5", href: "/products/devshield" },
   { name: "AI Lead Follow-Up", desc: "Automation", status: "LIVE DEMO", tone: "text-accent border-accent/25 bg-accent/5", href: "/work/ai-lead-follow-up-system" },
 ];
 
-/** Live build-status dashboard — factual statuses only. */
+/** Live build-status ledger — factual statuses only. */
 export function BuildStatus() {
   return (
-    <section aria-labelledby="home-now-heading" className="py-16 md:py-20">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <Reveal>
-          <div className="mb-10">
-            <p className="section-label">/now — build status</p>
-            <h2 id="home-now-heading" className="section-heading mb-4">What are you building now?</h2>
+    <section aria-labelledby="home-now-heading" className="section section-rule">
+      <div className="shell">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <p className="section-label">
+                <span className="text-accent">07</span> Build status
+              </p>
+              <h2 id="home-now-heading" className="section-heading mb-4">
+                What ships now.
+              </h2>
+              <p className="section-desc">
+                A factual ledger of what is live, what is building and what is
+                still a prototype.
+              </p>
+              <Link href="/labs" className="link-underline mt-6 inline-flex min-h-[44px] items-center text-sm font-medium text-accent">
+                Visit Labs <span aria-hidden="true">→</span>
+              </Link>
+            </Reveal>
           </div>
-        </Reveal>
-        <Reveal delay={1}>
-          <div className="tech-module">
-            <div className="flex items-center px-5 md:px-7 py-3.5 border-b border-surface-border">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-soft" aria-hidden="true" />
-              <p className="font-mono text-[11px] tracking-[0.2em] text-ink-muted ml-3">MS BEE — BUILD STATUS</p>
-              <span className="ml-auto font-mono text-[10px] text-ink-dim hidden sm:inline">/BUILDING</span>
-            </div>
-            <ul className="divide-y divide-surface-border">
-              {rows.map((r) => (
-                <li key={r.name}>
-                  <Link href={r.href} className="flex items-center gap-4 px-5 md:px-7 py-4 hover:bg-surface-light/60 transition-colors duration-fast min-h-[44px]">
-                    <span className={`font-mono text-[10px] tracking-[0.15em] border px-2.5 py-1 shrink-0 ${r.tone}`}>● {r.status}</span>
-                    <span className="font-semibold text-ink text-sm md:text-base">{r.name}</span>
-                    <span className="text-sm text-ink-dim hidden sm:inline">{r.desc}</span>
-                    <span className="ml-auto text-accent" aria-hidden="true">→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+
+          <div className="lg:col-span-8">
+            <Reveal delay={1}>
+              <div className="tech-module">
+                <div className="flex items-center border-b border-surface-border px-5 py-3.5 md:px-7">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse-soft" aria-hidden="true" />
+                  <p className="ml-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                    MS BEE — BUILD STATUS
+                  </p>
+                  <span className="ml-auto hidden font-mono text-[10px] text-ink-dim sm:inline">/NOW</span>
+                </div>
+                <ul className="divide-y divide-surface-border">
+                  {rows.map((r) => (
+                    <li key={r.name}>
+                      <Link
+                        href={r.href}
+                        className="group flex min-h-[60px] items-center gap-4 px-5 py-4 transition-colors hover:bg-white/[0.025] md:px-7"
+                      >
+                        <span className={`shrink-0 border px-2.5 py-1 font-mono text-[9px] tracking-[0.13em] ${r.tone}`}>
+                          ● {r.status}
+                        </span>
+                        <span className="text-sm font-medium text-ink md:text-base">{r.name}</span>
+                        <span className="hidden text-sm text-ink-dim sm:inline">{r.desc}</span>
+                        <span className="ml-auto text-accent transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
-        <Reveal delay={2}>
-          <div className="mt-6">
-            <Link href="/labs" className="link-drift inline-flex items-center gap-2 text-sm font-medium text-accent min-h-[44px]">
-              Visit Labs <span className="arrow" aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
 }
 
-/** Insights preview — reuses ArticleCard system. */
+/** Insights preview — one lead article, two supporting notes. */
 export function InsightsPreview({ articles }: { articles: Article[] }) {
+  const [lead, ...rest] = articles;
+  if (!lead) return null;
+
   return (
-    <section aria-labelledby="home-insights-heading" className="py-16 md:py-20 bg-[#08080F]">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+    <section aria-labelledby="home-insights-heading" className="section section-rule bg-[#07070D]">
+      <div className="shell">
         <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="section-label">/insights</p>
-              <h2 id="home-insights-heading" className="section-heading">What do you know?</h2>
+              <p className="section-label">
+                <span className="text-accent">08</span> Insights
+              </p>
+              <h2 id="home-insights-heading" className="section-heading">
+                Notes from the build.
+              </h2>
             </div>
-            <Link href="/insights" className="link-drift inline-flex items-center gap-2 text-sm font-medium text-accent min-h-[44px]">
-              All insights <span className="arrow" aria-hidden="true">→</span>
+            <Link href="/insights" className="link-underline inline-flex min-h-[44px] items-center text-sm font-medium text-accent">
+              All insights <span aria-hidden="true">→</span>
             </Link>
           </div>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {articles.map((a, i) => (
-            <Reveal key={a.slug} delay={i}>
+
+        <Reveal variant="featured">
+          <article className="group relative overflow-hidden border border-surface-border bg-surface">
+            <div className="absolute inset-0 bg-rule-grid opacity-30" aria-hidden="true" />
+            <div className="relative z-10 grid gap-7 p-7 md:p-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-12">
+              <div className="lg:col-span-7">
+                <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="eyebrow-pill">Latest · {lead.category}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-dim">
+                    {lead.readingMinutes} min read
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-dim">
+                    {lead.publishedAt}
+                  </span>
+                </div>
+                <h3 className="max-w-2xl text-[clamp(1.65rem,3.2vw,2.5rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-ink text-balance">
+                  <Link href={`/insights/${lead.slug}`} className="transition-colors hover:text-accent-hover">
+                    {lead.title}
+                  </Link>
+                </h3>
+              </div>
+              <div className="border-t border-surface-border pt-6 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                <p className="text-[15px] leading-relaxed text-ink-muted md:text-base">{lead.excerpt}</p>
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-dim">
+                    R.M. Musthak
+                  </span>
+                  <Link
+                    href={`/insights/${lead.slug}`}
+                    className="link-drift inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+                    aria-label={`Read the latest note: ${lead.title}`}
+                  >
+                    Read note <span className="arrow" aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {rest.map((a, i) => (
+            <Reveal key={a.slug} delay={i + 1}>
               <ArticleCard article={a} />
             </Reveal>
           ))}

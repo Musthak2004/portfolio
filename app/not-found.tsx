@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
+import OrbitMotif from "@/components/ui/OrbitMotif";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,46 +18,47 @@ const routes = [
 
 export default function NotFound() {
   return (
-    <section className="pt-32 md:pt-40 pb-24">
+    <section className="page-hero min-h-[80svh]">
+      <div className="page-hero-grid" aria-hidden="true" />
+      <div className="page-hero-glow" aria-hidden="true" />
       <Container>
-        <div className="max-w-2xl">
-          <p className="font-mono text-xs text-ink-muted tracking-[0.2em] uppercase mb-4">
-            <span className="text-accent">$</span> ms-bee route
-          </p>
-          <p className="font-mono text-sm text-ink-dim mb-6">
-            <span className="text-accent">!</span> 404 — no such route in this system
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-tight tracking-tight text-balance mb-5">
-            This page isn&apos;t part of MS Bee.
-          </h1>
-          <p className="text-ink-muted leading-relaxed mb-10">
-            The link may be outdated, or the page may have moved. Everything that does exist
-            is listed below — and every entry opens a real page, not a placeholder.
-          </p>
-
-          <div className="grid sm:grid-cols-2 gap-px bg-surface-border border border-surface-border mb-10">
-            {routes.map((r) => (
-              <Link
-                key={r.href}
-                href={r.href}
-                className="group bg-[#0B0B13] p-5 min-h-[44px] hover:bg-surface-light transition-colors duration-fast"
-              >
-                <p className="font-semibold text-ink group-hover:text-accent-hover transition-colors">
-                  {r.label} <span className="arrow" aria-hidden="true">→</span>
-                </p>
-                <p className="text-sm text-ink-muted mt-1">{r.desc}</p>
+        <div className="relative z-10 grid items-center gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="eyebrow-accent mb-5">
+              <span className="text-ink-dim mr-2">ERR / 404</span> Route not found
+            </p>
+            <h1 className="text-[clamp(2.6rem,7vw,5.4rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-ink text-balance">
+              This route never
+              <br />
+              <span className="text-ink-dim">got built.</span>
+            </h1>
+            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink-muted">
+              The page you asked for does not exist on msbee.dpdns.org. The work, products and
+              writing below are all live.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/" className="btn-primary btn-sweep min-h-[48px] justify-center">
+                Back to home <span aria-hidden="true">→</span>
               </Link>
-            ))}
+              <Link href="/work" className="btn-outline min-h-[48px] justify-center">
+                Browse work
+              </Link>
+            </div>
           </div>
+          <div className="hidden justify-end lg:col-span-5 lg:flex">
+            <OrbitMotif caption="MS BEE / UNRESOLVED ROUTE" />
+          </div>
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/" className="btn-primary btn-sweep w-full sm:w-auto justify-center min-h-[48px]">
-              Back home <span aria-hidden="true">→</span>
+        <div className="relative z-10 mt-14 grid gap-px border border-surface-border bg-surface-border sm:grid-cols-2 lg:grid-cols-4">
+          {routes.map((r) => (
+            <Link key={r.href} href={r.href} className="group bg-[#08080F] p-5 transition-colors hover:bg-surface-light">
+              <p className="text-sm font-medium text-ink transition-colors group-hover:text-accent-hover">
+                {r.label} <span aria-hidden="true">→</span>
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-dim">{r.desc}</p>
             </Link>
-            <Link href="/start-project" className="btn-outline w-full sm:w-auto justify-center min-h-[48px]">
-              Start a project
-            </Link>
-          </div>
+          ))}
         </div>
       </Container>
     </section>

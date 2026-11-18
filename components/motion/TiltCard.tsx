@@ -6,6 +6,7 @@ import {
   useRef,
   type CSSProperties,
   type ReactNode,
+  type Ref,
 } from "react";
 import { motion, type MotionVariant } from "./tokens";
 
@@ -65,6 +66,8 @@ export default function TiltCard({
       inner.style.setProperty("--ry", "0deg");
       inner.style.setProperty("--py", "0px");
       inner.style.setProperty("--px", "0px");
+      inner.style.setProperty("--mx", "50%");
+      inner.style.setProperty("--my", "50%");
       inner.style.setProperty("--scale", "1");
       inner.dataset.tilted = "false";
     };
@@ -83,6 +86,8 @@ export default function TiltCard({
         inner.style.setProperty("--rx", `${(-ny * peak).toFixed(2)}deg`);
         inner.style.setProperty("--px", `${(nx * motion.depth.parallax).toFixed(2)}px`);
         inner.style.setProperty("--py", `${(ny * motion.depth.parallax).toFixed(2)}px`);
+        inner.style.setProperty("--mx", `${(((e.clientX - r.left) / r.width) * 100).toFixed(1)}%`);
+        inner.style.setProperty("--my", `${(((e.clientY - r.top) / r.height) * 100).toFixed(1)}%`);
         inner.dataset.tilted = "true";
       });
     };
@@ -139,13 +144,13 @@ export default function TiltCard({
 
   return (
     <Tag
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={setWrap as any}
+      ref={setWrap as Ref<never>}
       className={`tilt-wrap ${className}`}
       style={style}
       data-tilt-variant={variant}
     >
       <div ref={innerRef} className={`tilt-surface ${innerClassName}`} data-tilted="false">
+        <span className="spot-layer" aria-hidden="true" />
         {children}
       </div>
     </Tag>

@@ -87,6 +87,15 @@ export interface Solution {
   relatedWork: string[];
 }
 
+/** A verified screenshot of a live product surface. */
+export interface ProductShot {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -102,6 +111,8 @@ export interface Product {
   url: string;
   changelog: { version: string; note: string }[];
   featured?: boolean;
+  /** real screenshot captured from the live listing or app */
+  image?: ProductShot;
 }
 
 export interface Lab {

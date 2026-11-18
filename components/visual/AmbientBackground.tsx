@@ -97,7 +97,7 @@ export default function AmbientBackground() {
   }, []);
 
   return (
-    <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-base">
+    <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-canvas">
       {/* deep base gradient */}
       <div
         className="absolute inset-0"
@@ -108,8 +108,8 @@ export default function AmbientBackground() {
       />
       {/* subtle grid */}
       <div className="absolute inset-0 bg-grid opacity-60" />
-      {/* faint orbital lines */}
-      <svg className="absolute left-1/2 top-0 h-full w-[1200px] -translate-x-1/2 opacity-[0.05]" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMin slice">
+      {/* faint orbital lines — constrained to viewport so it never overflows */}
+      <svg className="absolute left-1/2 top-0 -translate-x-1/2 opacity-[0.05] pointer-events-none" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMin slice" style={{ width: "100vw", maxWidth: "1200px" }}>
         <ellipse cx="600" cy="120" rx="420" ry="140" stroke="#9393FF" strokeWidth="1" />
         <ellipse cx="600" cy="120" rx="300" ry="100" stroke="#9393FF" strokeWidth="1" />
         <ellipse cx="600" cy="620" rx="520" ry="170" stroke="#9393FF" strokeWidth="1" />

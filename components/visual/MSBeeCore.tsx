@@ -43,7 +43,9 @@ export default function MSBeeCore({
   const [noGL, setNoGL] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
+    // WebGL is a large-screen enhancement. Below this the CSS core keeps the
+    // identity without risking a body crossing the centred headline.
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1160) {
       setNoGL(true);
       return;
     }

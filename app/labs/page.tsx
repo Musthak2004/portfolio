@@ -1,4 +1,4 @@
-import { Container, PageHero, CTASection } from "@/components/ui/primitives";
+import { CTASection, PageHero } from "@/components/ui/primitives";
 import JsonLd from "@/components/ui/JsonLd";
 import Reveal from "@/components/motion/Reveal";
 import { LabCard } from "@/components/cards";
@@ -29,21 +29,56 @@ export default function LabsIndex() {
         ])}
       />
       <PageHero
-        eyebrow="ms-bee labs"
-        title="Labs"
-        desc="Experimentation and R&D — prototypes, tests and lessons. This is where the company's future is explored."
+        eyebrow="Labs"
+        index="01"
+        title="R&amp;D, in public."
+        desc="Experiments and prototypes — AI workflows, automation tests and micro-SaaS ideas. Documented whether they work or not, because the lessons are the output."
+        breadcrumbs={[{ label: "Labs" }]}
+        meta={[
+          { label: "Experiments", value: `${labs.length} tracked` },
+          { label: "Live", value: `${labs.filter((l) => l.status === "Live").length} running` },
+          { label: "Prototype", value: `${labs.filter((l) => l.status === "Prototype").length} in build` },
+          { label: "Rule", value: "Publish the lesson" },
+        ]}
       />
-      <section className="pb-24">
-        <Container>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <section className="section">
+        <div className="shell">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {labs.map((l, i) => (
               <Reveal key={l.slug} delay={i % 3}>
                 <LabCard lab={l} />
               </Reveal>
             ))}
           </div>
-        </Container>
+
+          <Reveal variant="section">
+            <div className="mt-14 grid gap-6 border-t border-surface-border pt-8 md:grid-cols-2 md:items-center">
+              <div>
+                <p className="section-label mb-3">Why publish experiments?</p>
+                <p className="max-w-xl text-sm leading-relaxed text-ink-muted">
+                  Labs is the honest layer between products and client work. It shows
+                  what is being tested before it becomes a product, and records what
+                  the test actually taught.
+                </p>
+              </div>
+              <div className="grid grid-cols-3 gap-px border border-surface-border bg-surface-border">
+                {[
+                  ["EXPLORING", "Question open"],
+                  ["PROTOTYPE", "Build in progress"],
+                  ["LIVE", "Running publicly"],
+                ].map(([status, desc]) => (
+                  <div key={status} className="bg-[#08080F] p-4">
+                    <p className="font-mono text-[9px] tracking-[0.14em] text-accent">{status}</p>
+                    <p className="mt-2 text-xs text-ink-dim">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </section>
+
       <CTASection />
     </>
   );

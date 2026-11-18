@@ -156,6 +156,32 @@ export const projects: Project[] = [
     liveUrl: "https://www.orikma.lk/",
     featured: true,
     featuredRank: 2,
+    caseStudy: [
+      {
+        heading: "Presentation strategy",
+        body: "Industrial refrigeration work is bought on evidence of capability, so the site leads with the trades Orikma actually serves and the equipment it installs rather than a generic corporate introduction.",
+        bullets: [
+          "Services presented as scoped HVAC and refrigeration work",
+          "Product presentation tied to the equipment the team installs",
+          "Project work shown as on-site evidence, not stock imagery",
+          "Quote enquiry reachable from the main navigation",
+        ],
+      },
+      {
+        heading: "Enquiry-led structure",
+        body: "A buyer comparing industrial contractors needs a short path from a specific service to a conversation. Every service and product view resolves to the same quote-enquiry action, and the site stays usable on a phone from a plant room or a site visit.",
+      },
+    ],
+    gallery: [
+      {
+        src: "/images/work/orikma/home-desktop.webp",
+        alt: "Orikma Ref & Trading homepage on desktop — industrial refrigeration headline, deep navy navigation and a large on-site equipment visual.",
+        width: 1440,
+        height: 900,
+        caption: "Homepage — industrial HVAC and refrigeration positioning",
+        span: "full",
+      },
+    ],
     publishedAt: "2025-06-01",
     relatedSolution: "web-development",
   },
@@ -177,6 +203,16 @@ export const projects: Project[] = [
     features: ["Interactive menu", "Gallery", "Reservations flow"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://ember-and-oak-teal.vercel.app/",
+    gallery: [
+      {
+        src: "/images/work/ember-and-oak/home-desktop.webp",
+        alt: "Ember & Oak restaurant homepage on desktop — dark editorial layout with a warm plated-dish photograph and reservation call to action.",
+        width: 1440,
+        height: 900,
+        caption: "Homepage — dark, editorial restaurant concept",
+        span: "full",
+      },
+    ],
     publishedAt: "2025-03-01",
     relatedSolution: "web-development",
   },
@@ -198,6 +234,16 @@ export const projects: Project[] = [
     features: ["Hero", "Feature grid", "Pricing", "FAQ"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://flowspace-landing-black.vercel.app/",
+    gallery: [
+      {
+        src: "/images/work/flowspace-saas/home-desktop.webp",
+        alt: "FlowSpace SaaS landing page on desktop — product headline, interface preview and sign-up call to action on a light gradient background.",
+        width: 1440,
+        height: 900,
+        caption: "Landing page — hero, features, pricing and FAQ",
+        span: "full",
+      },
+    ],
     publishedAt: "2025-03-01",
     relatedSolution: "web-development",
   },
@@ -218,6 +264,16 @@ export const projects: Project[] = [
     features: ["Practice areas", "Team profiles", "Case results"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://harrington-cole-llp.vercel.app/",
+    gallery: [
+      {
+        src: "/images/work/harrington-and-cole/home-desktop.webp",
+        alt: "Harrington & Cole law firm concept homepage on desktop — authoritative serif headline, practice areas and a calm professional layout.",
+        width: 1440,
+        height: 900,
+        caption: "Homepage — authority and trust for a boutique firm",
+        span: "full",
+      },
+    ],
     publishedAt: "2025-02-01",
     relatedSolution: "web-development",
   },
